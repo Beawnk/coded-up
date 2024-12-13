@@ -1,0 +1,125 @@
+@font-face { font-family:'Outfit-Regular'; src: url('@/assets/fonts/Outfit-Regular.ttf'); }
+@font-face { font-family:'Outfit-Bold'; src: url('@/assets/fonts/Outfit-Bold.ttf'); }
+@font-face { font-family:'Outfit-SemiBold'; src: url('@/assets/fonts/Outfit-SemiBold.ttf'); }
+@font-face { font-family:'RobotoMono-Regular'; src: url('@/assets/fonts/RobotoMono-Regular.ttf'); }
+@font-face { font-family:'RobotoMono-SemiBold'; src: url('@/assets/fonts/RobotoMono-SemiBold.ttf'); }
+
+:root {
+    /* colors  */
+    --primary-color: #f9df74;
+    --secondary-color: #AFFA75;
+    --highlight-color: #FFBCBF;
+    --success-color: #75FAA2;
+    --info-color: #75C9FA;
+    --warning-color: #FAC975;
+    --danger-color: #FA7575;
+    --light-color: #FAF9F5;
+    --gray-color: #EAEAEA;
+    --white-color: #fff;
+    --dark-color: #1c1c1c;
+    --light-dark-color: #404243;
+    --black-color: #0a0a0a;
+    --shadow-color: #00000036;
+
+    --shadow: 0px 2px 10px 0px var(--shadow-color);
+
+    /* Fonts  */
+    --ff-primary: 'Outfit-Regular', sans-serif;
+    --ff-primary-bold: 'Outfit-Bold', sans-serif;
+    --ff-primary-semibold: 'Outfit-SemiBold', sans-serif;
+    --ff-secondary: 'RobotoMono-Regular', monospace;
+    --ff-secondary-semibold: 'RobotoMono-SemiBold', monospace;
+
+    /* font sizes */
+    --title-big: 36px;
+    --title-medium: 32px;
+    --title-small: 28px;
+  
+    --subtitle-big: 24px;
+    --subtitle-medium: 20px;
+    --subtitle-small: 18px;
+  
+    --text-big: 18px;
+    --text-medium: 16px;
+    --text-small: 14px;
+
+    --header-height: 60px;
+    --side-bar-width: 300px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: var(--ff-primary-bold);
+    margin: 0;
+}
+
+h4, h5, h6 {
+    font-family: var(--ff-primary-semibold);
+    margin: 0;
+}
+
+h1 {
+    font-size: var(--title-big);
+}
+
+h2 {
+    font-size: var(--title-medium);
+}
+
+h3 {
+    font-size: var(--title-small);
+}
+
+h4 {
+    font-size: var(--subtitle-big);
+}
+
+h5 {
+    font-size: var(--subtitle-medium);
+}
+
+h6 {
+    font-size: var(--subtitle-small);
+}
+
+a, p, label, span {
+    font-family: var(--ff-primary);
+}
+
+p {
+    font-size: var(--text-medium);
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+span {
+    font-size: var(--text-small);
+}
+
+ul { 
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+#app {
+    background-color: var(--black-color);
+}
+

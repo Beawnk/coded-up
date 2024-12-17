@@ -22,15 +22,12 @@
   }
 }
 
-.agent-1 {
-  opacity: 0;
-  @include v.animation('appear ease 0.5s forwards');
-}
-
-.agent-2 {
-  opacity: 0;
-  @include v.animation('appear ease 0.5s forwards');
-  animation-delay: 0.5s;
+@for $i from 1 through 10 {
+  .agent-#{$i} {
+    opacity: 0;
+    @include v.animation('appear ease 0.5s forwards');
+    animation-delay: #{($i - 1) * 0.5}s;
+  }
 }
 
 

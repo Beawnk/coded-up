@@ -49,7 +49,7 @@ const toggleCategory = (category) => {
             font-size: var(--text-small);
             color: var(--secondary-color);
         }
-    }
+    } 
     .classes {
         .category {
             margin-bottom: 20px;

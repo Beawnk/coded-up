@@ -4,6 +4,7 @@
     <SideBar />
     <div class="main-content">
       <Suspense><RouterView /></Suspense>
+      <a href="https://storyset.com/work" class="attribute">Work illustrations by Storyset</a>
     </div>
   </div>
 </template>
@@ -33,9 +34,35 @@ import SideBar from '@/components/SideBar.vue';
   justify-content: space-between;
   .main-content {
     width: calc(100% - var(--side-bar-width));
-    background-color: var(--white-color);
-    border-radius: 20px;
-    padding: 30px;
+    background-color: var(--gray-color);
+    border-radius: 20px 0 0 0;
+    padding: 40px;
+    padding-bottom: 80px;
+    position: relative;
+    p {
+      font-size: var(--text-big);
+      color: var(--light-dark-color);
+      font-family: var(--ff-primary-light);
+    }
+    strong {
+      color: var(--dark-color);
+      font-family: var(--ff-primary-semibold);
+      font-weight: normal;
+    }
+    .attribute {
+      display: block;
+      color: var(--light-dark-color);
+      font-size: var(--text-small);
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
   }
 }
 

@@ -26,10 +26,10 @@
     "id": "contato",
     "title": "Contato",
     "description": "Entre em contato que responderemos em até 24h.",
-    "contato": {
-      "telefone": "21 9999-9999",
+    "contact": {
+      "phone": "21 9999-9999",
       "email": "contato@gmail.com",
-      "endereco": "Rua Ali Perto, Botafogo - RJ"
+      "address": "Rua Ali Perto, Botafogo - RJ"
     }
   },
   "courses": {

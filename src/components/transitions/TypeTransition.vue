@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="type-content">
         <slot></slot>
         <div class='console-underscore' id='console'>|</div> 
     </div>
@@ -24,7 +24,7 @@ function consoleText(className) {
       clearInterval(typingInterval); // Stop the interval once the text is fully written
       con.className = 'console-underscore hidden'; // Hide the underscore
     }
-  }, 200);
+  }, 50);
 
   window.setInterval(function() {
     if (letterCount <= words.length) {
@@ -62,6 +62,6 @@ onMounted(() => {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 </style>

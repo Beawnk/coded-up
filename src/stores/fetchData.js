@@ -14,13 +14,13 @@ export const useFetchDataStore = defineStore('fetchData', () => {
       data.value = dataAwait;
       setTimeout(() => {
         loading.value = false;
-      }, 1000);
+      }, 500);
       return dataAwait;
     } catch (error) {
       console.error('Error fetching data:', error);
       setTimeout(() => {
         loading.value = false;
-      }, 1000);
+      }, 500);
     }
   }
 

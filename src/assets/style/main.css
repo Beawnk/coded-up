@@ -1,4 +1,5 @@
 @font-face { font-family:'Outfit-Regular'; src: url('@/assets/fonts/Outfit-Regular.ttf'); }
+@font-face { font-family:'Outfit-Light'; src: url('@/assets/fonts/Outfit-Light.ttf'); }
 @font-face { font-family:'Outfit-Bold'; src: url('@/assets/fonts/Outfit-Bold.ttf'); }
 @font-face { font-family:'Outfit-SemiBold'; src: url('@/assets/fonts/Outfit-SemiBold.ttf'); }
 @font-face { font-family:'RobotoMono-Regular'; src: url('@/assets/fonts/RobotoMono-Regular.ttf'); }
@@ -25,6 +26,7 @@
 
     /* Fonts  */
     --ff-primary: 'Outfit-Regular', sans-serif;
+    --ff-primary-light: 'Outfit-Light', sans-serif;
     --ff-primary-bold: 'Outfit-Bold', sans-serif;
     --ff-primary-semibold: 'Outfit-SemiBold', sans-serif;
     --ff-secondary: 'RobotoMono-Regular', monospace;
@@ -45,6 +47,8 @@
 
     --header-height: 60px;
     --side-bar-width: 300px;
+
+    --transition: all 0.3s;
 }
 
 * {
@@ -92,7 +96,7 @@ h6 {
     font-size: var(--subtitle-small);
 }
 
-a, p, label, span {
+a, p, label {
     font-family: var(--ff-primary);
 }
 
@@ -108,6 +112,7 @@ a {
 
 span {
     font-size: var(--text-small);
+    font-family: var(--ff-primary-light);
 }
 
 ul { 
@@ -117,6 +122,13 @@ ul {
 
 li {
     list-style: none;
+}
+
+button {
+    font-family: var(--ff-primary);
+    cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 #app {

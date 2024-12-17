@@ -6,8 +6,8 @@
                 <h1 class="target-text agent-1">Home</h1>
             </TypeTransition>
             <div class="agent-2 content">
-                <h4>Sobre a {{ data.titulo }}</h4>
-                <p>{{ data.descricao }}</p>
+                <h4>Sobre a {{ data.title }}</h4>
+                <p>{{ data.description }}</p>
             </div>
         </div>
     </AppearTransition>

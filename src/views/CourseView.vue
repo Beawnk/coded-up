@@ -1,33 +1,37 @@
 <template>
-    <Loader v-if="api.loading" />
-    <AppearTransition v-else>
-        <div class="course-page">
+    <AppearTransition>
+        <div class="course-page" v-if="data">
             <div class="presentation">
-                <TypeTransition><h1 class="target-text agent-1">{{ data.name }}</h1></TypeTransition>
-                <div class="course-img">
-                    <img :src="data.img" alt="Imagem do curso">
-                </div>
-                <h4>Descrição</h4>
-                <p class="description">{{ data.description }}</p>
-                <h4>Detalhes do curso</h4>
-                <div class="details">
-                    <div class="detail duration">
-                        <p>Duração</p>
-                        <h6>{{ data.hours }} horas</h6>
+                <KeepAlive v-if="activeClass === null">
+                    <div>
+                        <TypeTransition><h1 class="target-text agent-1">{{ data.name }}</h1></TypeTransition>
+                        <div class="course-img agent-2">
+                            <img :src="data.img" alt="Imagem do curso">
+                        </div>
+                        <h4 class="agent-3">Descrição</h4>
+                        <p class="description agent-4">{{ data.description }}</p>
+                        <h4 class="agent-5">Detalhes do curso</h4>
+                        <div class="details agent-6">
+                            <div class="detail duration">
+                                <p>Duração</p>
+                                <h6>{{ data.hours }} horas</h6>
+                            </div>
+                            <div class="detail classes">
+                                <p>Aulas</p>
+                                <h6>{{ data.totalClasses }}</h6>
+                            </div>
+                            <div class="detail category">
+                                <p>Categoria</p>
+                                <h6>{{ data.category }}</h6>
+                            </div>
+                            <div class="detail level">
+                                <p>Nível</p>
+                                <h6>{{ data.skillLevel }}</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="detail classes">
-                        <p>Aulas</p>
-                        <h6>{{ data.totalClasses }}</h6>
-                    </div>
-                    <div class="detail category">
-                        <p>Categoria</p>
-                        <h6>{{ data.category }}</h6>
-                    </div>
-                    <div class="detail level">
-                        <p>Nível</p>
-                        <h6>{{ data.skillLevel }}</h6>
-                    </div>
-                </div>
+                </KeepAlive>
+                <Suspense v-else><RouterView @clear-active-class="onClearActiveClass" @set-active-class="setActiveClass" /></Suspense>
             </div>
             <div class="classes-list">
                 <h4>Aulas</h4>
@@ -36,9 +40,9 @@
                         <div class="title" @click="toggleCategory(category.category)">
                             <h5>{{ category.category }} |<span>{{ category.classes.length }} aulas</span></h5>
                         </div>
-                        <div v-show="openCategories.includes(category.category)" class="class" v-for="classe in category.classes" :key="classe.id">
-                            <router-link :to="{ name: 'Course', params: { curso: classe.id }}" custom v-slot="{ navigate }">
-                                <div @click="navigate" @keypress.enter="navigate" role="link">
+                        <div v-show="openCategories.includes(category.category)" class="class" v-for="classe in category.classes" :key="classe.id" @click="activeClass = classe.id">
+                            <router-link :to="{ name: 'Class', params: { aula: classe.id }}" custom v-slot="{ navigate, isActive }">
+                                <div @click="navigate" @keypress.enter="navigate" role="link" :class="{ 'active-class': isActive }">
                                     <div class="video">
                                     
                                     </div>
@@ -56,22 +60,45 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import { useFetchDataStore } from '@/stores/fetchData.js'
-import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 
 const props = defineProps({
     curso: String
 });
 
-const api = useFetchDataStore();
-const data = await api.fetchData(`/course/${props.curso}`);
-const openCategories = ref([]);
+const emit = defineEmits(['clearActiveClass', 'setActiveClass']);
 
-onMounted(() => {
-  if (data.classes.length > 0) {
-    openCategories.value.push(data.classes[0].category);
+const api = useFetchDataStore();
+const data = ref(null);
+const openCategories = ref([]);
+const activeClass = ref(null);
+
+const fetchData = async (curso) => {
+  data.value = await api.fetchData(`/course/${curso}`);
+};
+
+const setActiveClass = (classId) => {
+  activeClass.value = classId;
+};
+
+const route = useRoute();
+
+onMounted(async () => {
+  await fetchData(props.curso);
+  if (data.value.classes.length > 0) {
+    openCategories.value.push(data.value.classes[0].category);
   }
+  if (route.params.aula) {
+    setActiveClass(route.params.aula);
+  }
+});
+
+onBeforeRouteUpdate(async (to, from, next) => {
+    await fetchData(to.params.curso);
+    setActiveClass(to.params.aula);
+    next();
 });
 
 const toggleCategory = (category) => {
@@ -82,9 +109,12 @@ const toggleCategory = (category) => {
   }
 };
 
+const onClearActiveClass = () => {
+    activeClass.value = null;
+};
+
 watch(() => props.curso, async (newVal) => {
-    data.value = await api.fetchData(`/course/${newVal}`);
-    location.reload();
+    await fetchData(newVal);
 });
 </script>
 
@@ -214,13 +244,21 @@ watch(() => props.curso, async (newVal) => {
                     margin-bottom: 10px;
                     transform: translateX(-10px);
                     opacity: 0;
-                    transition-property: overlay, display, opacity, transform;
+                    transition-property: overlay, display, opacity, transform, background-color;
                     transition-duration: 0.3s;
                     transition-behavior: allow-discrete;
                     &:hover {
                         background-color: var(--dark-color);
                         p {
                             color: var(--primary-color);
+                        }
+                    }
+                    &:has(.active-class) {
+                        background-color: var(--primary-color);
+                        &:hover {
+                            p {
+                                color: var(--light-dark-color);
+                            }
                         }
                     }
                     p {

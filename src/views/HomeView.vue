@@ -3,10 +3,10 @@
     <AppearTransition v-else>
         <div class="home">
             <TypeTransition>
-                <h1 class="target-text agent-1">Bem-vindo a {{ data.title }}, sua Jornada para o Design e Desenvolvimento Front-End.</h1>
+                <h1 class="target-text agent-1">Bem-vindo a {{ data.title }}, sua Jornada para o Design e Desenvolvimento Full-stack.</h1>
             </TypeTransition>
             <div class="content">
-                <p class="description agent-2">Você está prestes a embarcar em uma experiência de aprendizado que transformará sua visão sobre design e desenvolvimento. Na {{ data.title }}, oferecemos cursos online de alta qualidade focados em Front-End e Design UX/UI, projetados para todos os níveis de habilidade, desde iniciantes até profissionais em busca de atualização.</p>
+                <p class="description agent-2">Você está prestes a embarcar em uma experiência de aprendizado que transformará sua visão sobre design e desenvolvimento. Na {{ data.title }}, oferecemos cursos online de alta qualidade focados em desenvolvimento full-stack e Design UX/UI, projetados para todos os níveis de habilidade, desde iniciantes até profissionais em busca de atualização.</p>
                 <div class="explanation agent-3">
                     <div class="img">
                         <img src="../assets/img/coding.png" alt="Developer" />
@@ -28,13 +28,13 @@
                     <div class="inside-content">
                         <h4>O que você vai aprender?</h4>
                         <div class="text">
-                            <p>Fundamentos do HTML, CSS e JavaScript</p>
+                            <p>Fundamentos do HTML, CSS, JavaScript e muito mais</p>
                             <p>Técnicas de Design Responsivo</p>
                             <p>Princípios de Design UX/UI para criar experiências envolventes</p>
                             <p>Ferramentas e softwares utilizados no setor</p>
                             <p>Melhores práticas para otimização e desempenho</p>
                         </div>
-                        <p class="p-final">Prepare-se para dar o próximo passo na sua carreira! Explore nossos cursos e comece a sua jornada para se tornar um designer ou desenvolvedor Front-End de sucesso. Na {{ data.title }}, o futuro do design e desenvolvimento está a um clique de distância.</p>
+                        <p class="p-final">Prepare-se para dar o próximo passo na sua carreira! Explore nossos cursos e comece a sua jornada para se tornar um designer ou desenvolvedor de sucesso. Na {{ data.title }}, o futuro do design e desenvolvimento está a um clique de distância.</p>
                     </div>
                 </div>
                 <div class="reviews agent-5">

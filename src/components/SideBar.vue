@@ -1,6 +1,6 @@
 <template>
   <div class="side-bar">
-    <h5 v-show="courseId == null">Cursos</h5>
+    <router-link v-show="courseId == null" to="/cursos"><h5>Cursos</h5></router-link>
     <div>
       <button v-show="courseId != null" @click="courseId = null" class="back-btn">Voltar para cursos</button>
     </div>
@@ -25,6 +25,12 @@ const courseId = ref(null);
     min-height: 100vh;
     color: var(--white-color);
     padding: 10px 20px;
+    h5 {
+      transition: var(--transition);
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
 }
 
 .back-btn {

@@ -71,7 +71,7 @@
       },
       {
         "id": "python",
-        "name": "Python para Iniciantes",
+        "name": "Python",
         "totalClasses": 100,
         "hours": 30,
         "category": "Back End",
@@ -79,7 +79,7 @@
       },
       {
         "id": "figma",
-        "name": "Figma para UI Design",
+        "name": "Figma completo",
         "totalClasses": 60,
         "hours": 15,
         "category": "UX/UI",
@@ -104,6 +104,10 @@
             {
               "id": "html",
               "name": "HTML e Tags"
+            },
+            {
+              "id": "forms",
+              "name": "Formulários em HTML"
             }
           ]
         },
@@ -117,6 +121,10 @@
             {
               "id": "flexbox",
               "name": "CSS Flexbox"
+            },
+            {
+              "id": "grid",
+              "name": "CSS Grid"
             }
           ]
         }
@@ -142,6 +150,10 @@
             {
               "id": "funcoes",
               "name": "Funções e Métodos"
+            },
+            {
+              "id": "loops",
+              "name": "Laços de Repetição"
             }
           ]
         },
@@ -151,6 +163,10 @@
             {
               "id": "objetos",
               "name": "Objetos e Arrays"
+            },
+            {
+              "id": "promises",
+              "name": "Promises e Async/Await"
             }
           ]
         }
@@ -176,6 +192,10 @@
             {
               "id": "personas",
               "name": "Personas"
+            },
+            {
+              "id": "user-journey",
+              "name": "Jornada do Usuário"
             }
           ]
         },
@@ -185,6 +205,10 @@
             {
               "id": "prototipo",
               "name": "Protótipo"
+            },
+            {
+              "id": "wireframes",
+              "name": "Wireframes"
             }
           ]
         }
@@ -210,6 +234,10 @@
             {
               "id": "estado",
               "name": "Gerenciamento de Estado"
+            },
+            {
+              "id": "props",
+              "name": "Trabalhando com Props"
             }
           ]
         },
@@ -223,6 +251,10 @@
             {
               "id": "context",
               "name": "API de Contexto"
+            },
+            {
+              "id": "routing",
+              "name": "React Router"
             }
           ]
         }
@@ -230,7 +262,7 @@
     },
     {
       "id": "python",
-      "name": "Python para Iniciantes",
+      "name": "Python",
       "totalClasses": 100,
       "hours": 30,
       "category": "Back End",
@@ -248,6 +280,10 @@
             {
               "id": "controle-fluxo",
               "name": "Controle de Fluxo"
+            },
+            {
+              "id": "funcoes-python",
+              "name": "Funções em Python"
             }
           ]
         },
@@ -261,6 +297,10 @@
             {
               "id": "modulos",
               "name": "Trabalhando com Módulos"
+            },
+            {
+              "id": "erros",
+              "name": "Tratamento de Erros"
             }
           ]
         }
@@ -268,12 +308,12 @@
     },
     {
       "id": "figma",
-      "name": "Figma para UI Design",
+      "name": "Figma completo",
       "totalClasses": 60,
       "hours": 15,
       "category": "UX/UI",
       "skillLevel": "Iniciante",
-      "img": "/api/img/figma.webp",
+      "img": "/api/img/figma.jpg",
       "description": "Crie protótipos e interfaces de usuário profissionais com Figma, explorando seu poder colaborativo.",
       "classes": [
         {
@@ -286,6 +326,10 @@
             {
               "id": "tipografia",
               "name": "Tipografia no Figma"
+            },
+            {
+              "id": "cores",
+              "name": "Escolha de Cores"
             }
           ]
         },
@@ -299,6 +343,10 @@
             {
               "id": "animações",
               "name": "Animações no Figma"
+            },
+            {
+              "id": "feedback",
+              "name": "Feedback Visual"
             }
           ]
         }

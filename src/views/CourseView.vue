@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useFetchDataStore } from '@/stores/fetchData.js'
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
@@ -81,6 +81,11 @@ const toggleCategory = (category) => {
     openCategories.value.push(category);
   }
 };
+
+watch(() => props.curso, async (newVal) => {
+    data.value = await api.fetchData(`/course/${newVal}`);
+    location.reload();
+});
 </script>
 
 <style lang="scss">
@@ -169,6 +174,14 @@ const toggleCategory = (category) => {
                     .title::after {
                         transform: rotate(-180deg);
                     }
+                    .class {
+                        transform: translate3d(0, 0, 0);
+                        opacity: 1;
+                        @starting-style {
+                            transform: translateX(-10px);
+                            opacity: 0;
+                        }
+                    }
                 }
                 .title {
                     margin-bottom: 20px;
@@ -199,7 +212,11 @@ const toggleCategory = (category) => {
                     padding: 20px;
                     border-radius: var(--border-radius);
                     margin-bottom: 10px;
-                    transition: var(--transition);
+                    transform: translateX(-10px);
+                    opacity: 0;
+                    transition-property: overlay, display, opacity, transform;
+                    transition-duration: 0.3s;
+                    transition-behavior: allow-discrete;
                     &:hover {
                         background-color: var(--dark-color);
                         p {

@@ -2,14 +2,14 @@
   <div class="course-side">
     <div class="title">
       <span>Curso</span>
-      <h5>{{ course.name }}</h5>
+      <router-link :to="{ name: 'Course', params: { curso: courseId }}"><h5>{{ course.name }}</h5></router-link>
     </div>
     <div class="classes">
-      <div class="category" :class="{open: openCategories.includes(category.category)}" v-for="category in course.classes" :key="category.category" @click="toggleCategory(category.category)">
-        <p>{{ category.category }}</p>
+      <div class="category" :class="{open: openCategories.includes(category.category)}" v-for="category in course.classes" :key="category.category">
+        <p @click="toggleCategory(category.category)">{{ category.category }}</p>
         <ul v-show="openCategories.includes(category.category)">
           <li v-for="classe in category.classes" :key="classe.id">
-            <a href="">{{ classe.name }}</a>
+            <router-link :to="{ name: 'Course', params: { curso: classe.id }}">{{ classe.name }}</router-link>
           </li>
         </ul>
       </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useFetchDataStore } from '@/stores/fetchData.js'
 
 const props = defineProps({
@@ -31,6 +31,12 @@ const props = defineProps({
 const api = useFetchDataStore();
 const course = await api.fetchData(`/course/${props.courseId}`);
 const openCategories = ref([]);
+
+onMounted(() => {
+  if (course.classes.length > 0) {
+    openCategories.value.push(course.classes[0].category);
+  }
+});
 
 const toggleCategory = (category) => {
   if (openCategories.value.includes(category)) {
@@ -48,6 +54,11 @@ const toggleCategory = (category) => {
         span {
             font-size: var(--text-small);
             color: var(--secondary-color);
+        }
+        h5 {
+          &:hover {
+            color: var(--primary-color);
+          }
         }
     } 
     .classes {

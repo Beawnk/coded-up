@@ -1,20 +1,25 @@
 <template>
-    <div class="classes-list agent-3" v-if="data">
-        <h4>Aulas</h4>
-        <div class="classes">
-            <div class="category" :class="{open: openCategories.includes(category.category)}" v-for="category in data.classes" :key="category.category">
-                <div class="title" @click="toggleCategory(category.category)">
-                    <h5>{{ category.category }} |<span>{{ category.classes.length }} aulas</span></h5>
-                </div>
-                <div v-show="openCategories.includes(category.category)" class="class" v-for="(classe, index) in category.classes" :key="classe.id" @click="emitActiveClass(classe.id)">
-                    <router-link :to="{ name: 'Class', params: { aula: classe.id }}" custom v-slot="{ navigate, isActive }">
-                        <div @click="navigate" @keypress.enter="navigate" role="link" :class="{ 'active-class': isActive }">
-                            <div class="video">
-                                <img :src="getThumbnail(classe.id)" alt="Thumbnail">
-                            </div>
-                            <p>{{ index + 1 }}. {{ classe.name }}</p>
+    <div class="classes-list agent-3" v-if="data" :class="{ open: classesListOpen }">
+        <button class="open-btn" @click="classesListOpen = !classesListOpen"></button>
+        <div class="class-list-wrapper">
+            <h4>Aulas</h4>
+            <div class="classes">
+                <div class="class-wrapper">
+                    <div class="category" :class="{open: openCategories.includes(category.category)}" v-for="category in data.classes" :key="category.category">
+                        <div class="title" @click="toggleCategory(category.category)">
+                            <h5>{{ category.category }} |<span>{{ category.classes.length }} aulas</span></h5>
                         </div>
-                    </router-link>
+                        <div v-show="openCategories.includes(category.category)" class="class" v-for="(classe, index) in category.classes" :key="classe.id" @click="emitActiveClass(classe.id)">
+                            <router-link :to="{ name: 'Class', params: { aula: classe.id }}" custom v-slot="{ navigate, isActive }">
+                                <div @click="navigate" @keypress.enter="navigate" role="link" :class="{ 'active-class': isActive }">
+                                    <div class="video">
+                                        <img :src="getThumbnail(classe.id)" alt="Thumbnail">
+                                    </div>
+                                    <p>{{ index + 1 }}. {{ classe.name }}</p>
+                                </div>
+                            </router-link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,6 +39,7 @@ const api = useFetchDataStore();
 const data = ref(null);
 const openCategories = ref([]);
 const videoThumb = ref({});
+const classesListOpen = ref(false);
 
 const fetchData = async (curso) => {
     data.value = await api.fetchData(`/course/${curso}`);
@@ -45,7 +51,7 @@ const fetchData = async (curso) => {
 };
 
 const getThumbnail = (classId) => {
-  return `https://img.youtube.com/vi/${videoThumb.value[classId]}/mqdefault.jpg`;
+  return `https://img.youtube.com/vi/${videoThumb.value[classId]}/hqdefault.jpg`;
 };
 
 const emitActiveClass = (classe) => {
@@ -75,18 +81,104 @@ watch(() => props.curso, async (newVal) => {
     await fetchData(newVal);
     openAllCategories();
 });
+
+watch(classesListOpen, () => {
+  if (!classesListOpen.value) {
+    document.documentElement.style.setProperty('--classes-list-width', '60px');
+  } else {
+    document.documentElement.style.setProperty('--classes-list-width', '450px');
+  }
+});
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/style/main.scss' as v;
+
 .classes-list {
     width: calc(30% - 40px);
+    transition: var(--transition);
+    @include v.media(1540px) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 20px;
+        width: var(--classes-list-width);
+        background-color: var(--white-color);
+        box-shadow: var(--shadow);
+        border-radius: 20px 0 0 20px;
+        height: calc(100vh - var(--header-height));
+        &.open {
+            .class-list-wrapper {
+                display: block;
+                opacity: 1;
+            }
+            .open-btn {
+                transform: rotate(180deg);
+            }
+        }
+    } 
     h4 {
-        margin-top: 30px;
-        margin-bottom: 30px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .open-btn {
+        display: none;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 20px;
+        height: 20px;
+        background-image: url('../assets/img/icons/open-arrow-black.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: rotate(0);
+        transition: var(--transition);
+        &:hover {
+            background-image: url('../assets/img/icons/open-arrow-hover.png');
+        }
+        @include v.media(1540px) {
+            display: block;
+        }
+    }
+    .class-list-wrapper {
+        @include v.media(1540px) {
+            display: none;
+            opacity: 0;
+        }
+    }
+    .class-wrapper {
+        &::-webkit-scrollbar-thumb {
+            background: var(--light-dark-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        @include v.media(1540px) {
+            overflow-y: auto;
+            height: calc(100vh - var(--header-height) - 130px);
+            padding-right: 20px;
+        }
     }
     .classes {
+        position: relative;
+        @include v.media(1540px) { 
+            &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 30px;
+            display: block;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, var(--white-color) 100%);
+            z-index: 10;
+            }
+        }
         .category {
             margin-bottom: 20px;
+            margin-top: 20px;
             &:last-child {
                 margin-bottom: 0;
             }
@@ -152,7 +244,7 @@ watch(() => props.curso, async (newVal) => {
                 }
                 .video {
                     width: 100%;
-                    height: 200px;
+                    height: 25vh;
                     background-color: var(--light-dark-color);
                     border-radius: var(--border-radius);
                     overflow: hidden;

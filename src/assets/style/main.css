@@ -47,6 +47,7 @@
 
     --header-height: 60px;
     --side-bar-width: 300px;
+    --classes-list-width: 60px;
 
     --transition: all 0.3s;
     --border-radius: 10px;
@@ -134,7 +135,29 @@ button {
     padding: 0;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--gray-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-dark-color);
+}
+
 #app {
-    background-color: var(--black-color);
+    background-color: var(--gray-color);
 }
 

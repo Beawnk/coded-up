@@ -27,7 +27,6 @@ const openCourseSide = (id) => {
 <style lang="scss" scoped>
 .courses-list {
     margin-top: 20px;
-
     ul {
         .course {
             margin-bottom: 10px;

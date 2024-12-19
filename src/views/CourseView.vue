@@ -120,14 +120,21 @@ watch(() => props.curso, async (newVal) => {
 </script>
 
 <style lang="scss">
+@use '../assets/style/main.scss' as v;
+
 :root {
     --presentation-width: calc(70% + 40px);
 }
 .course-page {
     display: flex;
+    // position: relative;
     .presentation {
         width: var(--presentation-width);
         margin-right: 40px;
+        @include v.media(1540px) {
+            width: calc(100% - 60px);
+            margin-right: 0;
+        }
         h1 {
             margin-bottom: 20px;
         }

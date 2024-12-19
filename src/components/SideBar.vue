@@ -1,11 +1,14 @@
 <template>
-  <div class="side-bar">
-    <router-link v-show="courseId == null" to="/cursos"><h5>Cursos</h5></router-link>
-    <div>
-      <button v-show="courseId != null" @click="courseId = null" class="back-btn">Voltar para cursos</button>
+  <div class="side-bar" :class="{ open: openSideBar }">
+    <div class="side-wrapper">
+      <router-link v-show="courseId == null" to="/cursos"><h5>Cursos</h5></router-link>
+      <div>
+        <button v-show="courseId != null" @click="courseId = null" class="back-btn">Voltar para cursos</button>
+      </div>
+      <Suspense v-if="courseId == null"><CoursesSide @course-emit="(id) => courseId = id"/></Suspense>
+      <Suspense v-else><CourseSide :course-id="courseId" /></Suspense>
     </div>
-    <Suspense v-if="courseId == null"><CoursesSide @course-emit="(id) => courseId = id"/></Suspense>
-    <Suspense v-else><CourseSide :course-id="courseId" /></Suspense>
+    <button class="open-btn" @click="openSideBar = !openSideBar"></button>
   </div>
 </template>
 
@@ -15,25 +18,85 @@ import CoursesSide from '@/components/CoursesSide.vue';
 import CourseSide from '@/components/CourseSide.vue';
 
 const courseId = ref(null);
+const openSideBar = ref(true);
 
+watch(openSideBar, () => {
+  if (!openSideBar.value) {
+    document.documentElement.style.setProperty('--side-bar-width', '60px');
+  } else {
+    document.documentElement.style.setProperty('--side-bar-width', '300px');
+  }
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .side-bar {
-    width: var(--side-bar-width);
-    background-color: var(--black-color);
-    min-height: 100vh;
-    color: var(--white-color);
+  width: var(--side-bar-width);
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: calc(100vh - 80px);
+  background-color: var(--black-color);
+  height: calc(100vh);
+  color: var(--white-color);
+  padding: 0;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  transition: var(--transition);
+  &.open {
     padding: 10px 20px;
-    h5 {
-      transition: var(--transition);
-      &:hover {
-        color: var(--primary-color);
+    padding-top: 20px;
+    .side-wrapper {
+      display: block;
+      opacity: 1;
+    }
+    .open-btn {
+      &::after {
+        transform: rotate(0);
       }
     }
-}
+  }
+  h5 {
+    transition: var(--transition);
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+  .side-wrapper {
+    opacity: 0;
+    display: none;
+    width: 100%;
+  }
+  .open-btn {
+    width: 40px;
+    height: 20px;
+    display: block;
+    transition: var(--transition);
 
-.back-btn {
+    &::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-image: url('../assets/img/icons/open-arrow.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 100% 0;
+      display: block;
+      transition: var(--transition);
+      position: absolute;
+      transform: rotate(180deg);
+      top: 20px;
+      right: 20px;
+    }
+    &:hover {
+      &::after {
+        background-image: url('../assets/img/icons/open-arrow-hover.png');
+      }
+    }
+    
+  }
+  .back-btn {
     background-color: transparent;
     border: none;
     outline: none;
@@ -48,6 +111,7 @@ const courseId = ref(null);
         margin-right: 5px;
         background-image: url('../assets/img/icons/arrow.png');
         background-size: contain;
+        background-repeat: no-repeat;
         width: 20px;
         height: 20px;
         display: inline-block;
@@ -61,5 +125,8 @@ const courseId = ref(null);
             background-image: url('../assets/img/icons/arrow-hover.png');
         }
     }
+  }
 }
+
+
 </style>

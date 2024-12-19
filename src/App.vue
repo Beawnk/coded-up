@@ -33,6 +33,7 @@ import SideBar from '@/components/SideBar.vue';
 .wrapper {
   display: flex;
   justify-content: space-between;
+  position: relative;
   .main-content {
     width: calc(100% - var(--side-bar-width));
     background-color: var(--gray-color);
@@ -40,6 +41,7 @@ import SideBar from '@/components/SideBar.vue';
     padding: 40px;
     padding-bottom: 80px;
     position: relative;
+    transition: var(--transition);
     p {
       font-size: var(--text-big);
       color: var(--light-dark-color);

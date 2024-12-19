@@ -1,7 +1,11 @@
 <template>
   <div class="class-view" v-if="data">
-    <button @click="goBack">Voltar para curso</button>
+    <button @click="goBack" class="back-btn">Voltar para curso</button>
     <TypeTransition><h1 class="target-text agent-1">{{ data.name }}</h1></TypeTransition>
+    <div class="class-video agent-2">
+      <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${data.video}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p>{{ data.content }}</p>
   </div>
 </template>
 
@@ -12,7 +16,8 @@ import { useFetchDataStore } from '@/stores/fetchData.js';
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 
 const props = defineProps({
-  aula: String
+  aula: String,
+  curso: String
 });
 
 const emit = defineEmits(['clearActiveClass', 'setActiveClass']);
@@ -29,8 +34,8 @@ const fetchData = async (aula) => {
 };
 
 const goBack = () => {
+  router.push({ name: 'Course', params: { curso: props.curso } });
   emit('clearActiveClass');
-  router.go(-1);
 };
 
 onBeforeRouteUpdate(async (to, from, next) => {
@@ -44,5 +49,43 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-
+.class-view {
+  .back-btn {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: var(--transition);
+    &::before {
+      content: '';
+      width: 10px;
+      height: 11px;
+      margin-right: 10px;
+      background-image: url('../assets/img/icons/arrow-black.png');
+      background-repeat: no-repeat;
+      background-position: 0.5px 0px;
+      background-size: contain;
+      transform: rotate(90deg);
+    }
+    &:hover {
+      background-color: var(--highlight-color);
+    }
+  }
+  .class-video {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 60vh;
+    border-radius: var(--border-radius);
+    margin-bottom: 40px;
+    iframe {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
 </style>

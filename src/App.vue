@@ -18,14 +18,15 @@ import SideBar from '@/components/SideBar.vue';
 <style lang="scss">
 .btn {
   padding: 10px 20px;
-  border-radius: 10px;
-  background-color: var(--primary-color);
+  border-radius: 5px;
+  background-color: var(--highlight-color);
   color: var(--white-color);
   border: none;
   cursor: pointer;
   transition: var(--transition);
+  font-size: var(--text-medium);
   &:hover {
-    background-color: var(--highlight-color);
+    background-color: var(--primary-color);
   }
 }
 

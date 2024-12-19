@@ -9,7 +9,7 @@
         <p @click="toggleCategory(category.category)">{{ category.category }}</p>
         <ul v-show="openCategories.includes(category.category)">
           <li v-for="classe in category.classes" :key="classe.id">
-            <router-link :to="{ name: 'Course', params: { curso: classe.id }}">{{ classe.name }}</router-link>
+            <router-link :to="{ name: 'Class', params: { curso: courseId, aula: classe.id }}">{{ classe.name }}</router-link>
           </li>
         </ul>
       </div>

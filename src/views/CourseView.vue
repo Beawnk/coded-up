@@ -14,11 +14,11 @@
                         <div class="details agent-6">
                             <div class="detail duration">
                                 <p>Duração</p>
-                                <h6>{{ data.hours }} horas</h6>
+                                <h6>{{ totalDuration }} horas</h6>
                             </div>
                             <div class="detail classes">
                                 <p>Aulas</p>
-                                <h6>{{ data.totalClasses }}</h6>
+                                <h6>{{ totalClasses }}</h6>
                             </div>
                             <div class="detail category">
                                 <p>Categoria</p>
@@ -31,34 +31,16 @@
                         </div>
                     </div>
                 </KeepAlive>
-                <Suspense v-else><RouterView @clear-active-class="onClearActiveClass" @set-active-class="setActiveClass" /></Suspense>
+                <Suspense v-else><RouterView @clear-active-class="onClearActiveClass" @set-active-class="setActiveClass" :curso="curso" /></Suspense>
             </div>
-            <div class="classes-list">
-                <h4>Aulas</h4>
-                <div class="classes">
-                    <div class="category" :class="{open: openCategories.includes(category.category)}" v-for="category in data.classes" :key="category.category">
-                        <div class="title" @click="toggleCategory(category.category)">
-                            <h5>{{ category.category }} |<span>{{ category.classes.length }} aulas</span></h5>
-                        </div>
-                        <div v-show="openCategories.includes(category.category)" class="class" v-for="classe in category.classes" :key="classe.id" @click="activeClass = classe.id">
-                            <router-link :to="{ name: 'Class', params: { aula: classe.id }}" custom v-slot="{ navigate, isActive }">
-                                <div @click="navigate" @keypress.enter="navigate" role="link" :class="{ 'active-class': isActive }">
-                                    <div class="video">
-                                    
-                                    </div>
-                                    <p>{{ classe.name }}</p>
-                                </div>
-                            </router-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Suspense><ClassesList :curso="curso" @active-class="setActiveClass" /></Suspense>
         </div>
     </AppearTransition>
 </template>
 
 <script setup>
 import { onMounted, ref, watch } from 'vue';
+import ClassesList from '@/components/ClassesList.vue';
 import { useFetchDataStore } from '@/stores/fetchData.js'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
@@ -68,28 +50,51 @@ const props = defineProps({
     curso: String
 });
 
-const emit = defineEmits(['clearActiveClass', 'setActiveClass']);
-
 const api = useFetchDataStore();
 const data = ref(null);
-const openCategories = ref([]);
 const activeClass = ref(null);
+const videoThumb = ref({});
+const totalDuration = ref(0);
+const totalClasses = ref(0);
+const route = useRoute();
+
 
 const fetchData = async (curso) => {
-  data.value = await api.fetchData(`/course/${curso}`);
+    data.value = await api.fetchData(`/course/${curso}`);
+    const classes = await api.fetchData(`/class`);
+    const courseClasses = classes.filter(classe => classe.course === curso);
+    totalClasses.value = courseClasses.length;
+    courseClasses.forEach(classe => {
+      videoThumb.value[classe.id] = classe.video;
+    });
+    await fetchVideoDurations(courseClasses);
+};
+
+const fetchVideoDurations = async (courseClasses) => {
+  const videoIds = courseClasses.map(classe => videoThumb.value[classe.id]).join(',');
+  const apiKey = 'AIzaSyAhRExcM6zUrfozCaJEzw7JFRsY01r5ZZs';
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoIds}&part=contentDetails&key=${apiKey}`);
+  const result = await response.json();
+  totalDuration.value = Math.ceil(result.items.reduce((sum, item) => {
+    const duration = parseISO8601Duration(item.contentDetails.duration);
+    return sum + duration;
+  }, 0));
+};
+
+const parseISO8601Duration = (duration) => {
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  const hours = parseInt(match[1] || 0);
+  const minutes = parseInt(match[2] || 0);
+  const seconds = parseInt(match[3] || 0);
+  return hours + (minutes / 60) + (seconds / 3600);
 };
 
 const setActiveClass = (classId) => {
   activeClass.value = classId;
 };
 
-const route = useRoute();
-
 onMounted(async () => {
   await fetchData(props.curso);
-  if (data.value.classes.length > 0) {
-    openCategories.value.push(data.value.classes[0].category);
-  }
   if (route.params.aula) {
     setActiveClass(route.params.aula);
   }
@@ -97,17 +102,13 @@ onMounted(async () => {
 
 onBeforeRouteUpdate(async (to, from, next) => {
     await fetchData(to.params.curso);
-    setActiveClass(to.params.aula);
+    if (to.params.aula) {
+        setActiveClass(to.params.aula);
+    } else {
+        onClearActiveClass();
+    }
     next();
 });
-
-const toggleCategory = (category) => {
-  if (openCategories.value.includes(category)) {
-    openCategories.value = openCategories.value.filter(c => c !== category);
-  } else {
-    openCategories.value.push(category);
-  }
-};
 
 const onClearActiveClass = () => {
     activeClass.value = null;
@@ -184,94 +185,6 @@ watch(() => props.curso, async (newVal) => {
                 }
                 &.level h6::before {
                     background-image: url('../assets/img/icons/level.png');
-                }
-            }
-        }
-    }
-    .classes-list {
-        width: calc(30% - 40px);
-        h4 {
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-        .classes {
-            .category {
-                margin-bottom: 20px;
-                &:last-child {
-                    margin-bottom: 0;
-                }
-                &.open {
-                    .title::after {
-                        transform: rotate(-180deg);
-                    }
-                    .class {
-                        transform: translate3d(0, 0, 0);
-                        opacity: 1;
-                        @starting-style {
-                            transform: translateX(-10px);
-                            opacity: 0;
-                        }
-                    }
-                }
-                .title {
-                    margin-bottom: 20px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    cursor: pointer;
-                    h5 {
-                        display: flex;
-                        align-items: center;
-                        span {
-                            margin-left: 5px;
-                        }
-                    }
-                    &::after {
-                        content: '';
-                        width: 10px;
-                        height: 10px;
-                        display: inline-block;
-                        background-image: url('../assets/img/icons/arrow-black.png');
-                        background-size: contain;
-                        transition: var(--transition);
-                    }
-                }
-                .class {
-                    cursor: pointer;
-                    background-color: var(--white-color);
-                    padding: 20px;
-                    border-radius: var(--border-radius);
-                    margin-bottom: 10px;
-                    transform: translateX(-10px);
-                    opacity: 0;
-                    transition-property: overlay, display, opacity, transform, background-color;
-                    transition-duration: 0.3s;
-                    transition-behavior: allow-discrete;
-                    &:hover {
-                        background-color: var(--dark-color);
-                        p {
-                            color: var(--primary-color);
-                        }
-                    }
-                    &:has(.active-class) {
-                        background-color: var(--primary-color);
-                        &:hover {
-                            p {
-                                color: var(--light-dark-color);
-                            }
-                        }
-                    }
-                    p {
-                        font-size: var(--text-big);
-                        font-family: var(--ff-primary);
-                    }
-                    .video {
-                        width: 100%;
-                        height: 200px;
-                        background-color: var(--light-dark-color);
-                        border-radius: var(--border-radius);
-                        margin-bottom: 10px;
-                    }
                 }
             }
         }

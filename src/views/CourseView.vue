@@ -139,6 +139,9 @@ watch(() => props.curso, async (newVal) => {
             width: calc(100% - 60px);
             margin-right: 0;
         }
+        @include v.media(500px) { 
+            width: 100%;
+        }
         h1 {
             margin-bottom: 20px;
         }
@@ -154,6 +157,9 @@ watch(() => props.curso, async (newVal) => {
         .description {
             margin-bottom: 40px;
             max-width: 90%;
+            @include v.media(1540px) {  
+                max-width: 100%;
+            }
         }
         h4 {
             margin-bottom: 20px;
@@ -162,6 +168,9 @@ watch(() => props.curso, async (newVal) => {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
+            @include v.media(500px) {
+                grid-template-columns: 1fr;
+            }
             .detail {
                 background-color: var(--white-color);
                 padding: 20px;

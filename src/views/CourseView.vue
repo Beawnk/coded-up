@@ -6,7 +6,7 @@
                     <div>
                         <TypeTransition><h1 class="target-text agent-1">{{ data.name }}</h1></TypeTransition>
                         <div class="course-img agent-2">
-                            <img :src="data.img" alt="Imagem do curso">
+                            <img :src="getImageUrl(data.img)" alt="Imagem do curso">
                         </div>
                         <h4 class="agent-3">Descrição</h4>
                         <p class="description agent-4">{{ data.description }}</p>
@@ -41,16 +41,15 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import ClassesList from '@/components/ClassesList.vue';
-import { useFetchDataStore } from '@/stores/fetchData.js'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import json from '@/api/api.json';
 
 const props = defineProps({
     curso: String
 });
 
-const api = useFetchDataStore();
 const data = ref(null);
 const activeClass = ref(null);
 const videoThumb = ref({});
@@ -60,8 +59,8 @@ const route = useRoute();
 
 
 const fetchData = async (curso) => {
-    data.value = await api.fetchData(`/course/${curso}`);
-    const classes = await api.fetchData(`/class`);
+    data.value = json.course.find(course => course.id === curso);
+    const classes = json.class;
     const courseClasses = classes.filter(classe => classe.course === curso);
     totalClasses.value = courseClasses.length;
     courseClasses.forEach(classe => {
@@ -92,6 +91,11 @@ const parseISO8601Duration = (duration) => {
 const setActiveClass = (classId) => {
   activeClass.value = classId;
 };
+
+const getImageUrl = (imageName) => {
+    return new URL(`../assets/img/course-img/${imageName}`, import.meta.url).href;
+};
+
 
 onMounted(async () => {
   await fetchData(props.curso);

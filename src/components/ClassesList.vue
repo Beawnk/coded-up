@@ -28,22 +28,21 @@
 
 <script setup>
 import { onMounted, ref, watch } from 'vue';
-import { useFetchDataStore } from '@/stores/fetchData.js';
+import json from '@/api/api.json';
 
 const props = defineProps({
     curso: String
 });
 
 const emit = defineEmits(['activeClass']);
-const api = useFetchDataStore();
 const data = ref(null);
 const openCategories = ref([]);
 const videoThumb = ref({});
 const classesListOpen = ref(false);
 
 const fetchData = async (curso) => {
-    data.value = await api.fetchData(`/course/${curso}`);
-    const classes = await api.fetchData(`/class`);
+    data.value = json.course.find(course => course.id === curso);
+    const classes = json.class;
     const courseClasses = classes.filter(classe => classe.course === curso);
     courseClasses.forEach(classe => {
       videoThumb.value[classe.id] = classe.video;

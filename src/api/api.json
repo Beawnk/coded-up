@@ -95,7 +95,7 @@
       "hours": 22,
       "category": "Front End",
       "skillLevel": "Iniciante",
-      "img": "/api/img/html-e-css.webp",
+      "img": "html-e-css.webp",
       "description": "Nesse curso você irá aprender como utilizar tags de HTML para estruturar o conteúdo da sua página. E também como estiliza-las com CSS.",
       "classes": [
         {
@@ -137,7 +137,7 @@
       "hours": 34,
       "category": "Front End",
       "skillLevel": "Intermediário",
-      "img": "/api/img/javascript.jpg",
+      "img": "javascript.jpg",
       "description": "Esse é um curso completo de JavaScript, você irá prender tudo sobre variáveis, objetos, arrays e funções.",
       "classes": [
         {
@@ -179,7 +179,7 @@
       "hours": 18,
       "category": "UX/UI",
       "skillLevel": "Intermediário",
-      "img": "/api/img/ux-design.webp",
+      "img": "ux-design.webp",
       "description": "Aprenda todos os fundamentos de UX Design nesse curso. Aprenda como pesquisar, analisar e desenvolver um projeto com foco na experiência do usuário.",
       "classes": [
         {
@@ -221,7 +221,7 @@
       "hours": 25,
       "category": "Front End",
       "skillLevel": "Avançado",
-      "img": "/api/img/reactjs.webp",
+      "img": "reactjs.webp",
       "description": "Aprenda a criar aplicações web modernas com React.js, utilizando hooks, estados, e componentes funcionais.",
       "classes": [
         {
@@ -267,7 +267,7 @@
       "hours": 30,
       "category": "Back End",
       "skillLevel": "Iniciante",
-      "img": "/api/img/python.webp",
+      "img": "python.webp",
       "description": "Esse curso ensina as bases de Python, uma linguagem versátil para desenvolvimento, análise de dados e automação.",
       "classes": [
         {
@@ -313,7 +313,7 @@
       "hours": 15,
       "category": "UX/UI",
       "skillLevel": "Iniciante",
-      "img": "/api/img/figma.jpg",
+      "img": "figma.jpg",
       "description": "Crie protótipos e interfaces de usuário profissionais com Figma, explorando seu poder colaborativo.",
       "classes": [
         {

@@ -12,8 +12,8 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
-import { useFetchDataStore } from '@/stores/fetchData.js';
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
+import json from '@/api/api.json';
 
 const props = defineProps({
   aula: String,
@@ -22,14 +22,13 @@ const props = defineProps({
 
 const emit = defineEmits(['clearActiveClass', 'setActiveClass']);
 
-const api = useFetchDataStore();
 const data = ref(null);
 
 const router = useRouter();
 const route = useRoute();
 
 const fetchData = async (aula) => {
-  data.value = await api.fetchData(`/class/${aula}`);
+  data.value = json.class.find(classe => classe.id === aula);
   emit('setActiveClass', aula);
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="course-side">
+  <div v-if="course" class="course-side">
     <div class="title">
       <span>Curso</span>
       <router-link :to="{ name: 'Course', params: { curso: courseId }}"><h5>{{ course.name }}</h5></router-link>
@@ -18,8 +18,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useFetchDataStore } from '@/stores/fetchData.js'
+import { ref, onMounted, watch } from 'vue';
+import json from '@/api/api.json';
+
 
 const props = defineProps({
   courseId: {
@@ -28,13 +29,17 @@ const props = defineProps({
   }
 });
 
-const api = useFetchDataStore();
-const course = await api.fetchData(`/course/${props.courseId}`);
+const course = ref(null);
 const openCategories = ref([]);
 
-onMounted(() => {
-  if (course.classes.length > 0) {
-    openCategories.value.push(course.classes[0].category);
+const fetchData = async (curso) => {
+  course.value = await json.course.find(course => course.id === curso);
+};
+
+onMounted(async () => {
+  await fetchData(props.courseId);
+  if (course.value && course.value.classes && course.value.classes.length > 0) {
+    openCategories.value.push(course.value.classes[0].category);
   }
 });
 
@@ -45,6 +50,13 @@ const toggleCategory = (category) => {
     openCategories.value.push(category);
   }
 };
+
+watch(() => props.courseId, async (newVal) => {
+  await fetchData(newVal);
+  if (course.value && course.value.classes && course.value.classes.length > 0) {
+    openCategories.value.push(course.value.classes[0].category);
+  }
+});
 </script>
 
 <style lang="scss" scoped>

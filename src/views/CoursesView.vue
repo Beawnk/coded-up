@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="api.loading" />
+  <Loader v-if="loading" />
   <AppearTransition v-else>
     <div class="courses">
       <TypeTransition><h1 class="target-text agent-1">{{ data.title }}</h1></TypeTransition>
@@ -19,13 +19,17 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useFetchDataStore } from '@/stores/fetchData.js'
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
+import json from '@/api/api.json';
 
-const api = useFetchDataStore();
-const data = await api.fetchData('/courses');
+const loading = ref(true);
+const data = json.courses;
+
+onMounted(() => {
+  loading.value = false;
+});
 
 </script>
 

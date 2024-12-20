@@ -1,19 +1,17 @@
 <template>
   <div class="side-bar" :class="{ open: openSideBar }">
     <div class="side-wrapper">
-      <router-link v-show="courseId == null" to="/cursos"><h5>Cursos</h5></router-link>
-      <div>
-        <button v-show="courseId != null" @click="courseId = null" class="back-btn">Voltar para cursos</button>
-      </div>
-      <Suspense v-if="courseId == null"><CoursesSide @course-emit="(id) => courseId = id"/></Suspense>
-      <Suspense v-else><CourseSide :course-id="courseId" /></Suspense>
+      <router-link v-if="courseId == null" to="/cursos"><h5>Cursos</h5></router-link>
+      <button v-if="courseId != null" @click="courseId = null" class="back-btn">Voltar para cursos</button>
+      <CoursesSide v-if="courseId == null" @course-emit="(id) => courseId = id" />
+      <CourseSide v-else :course-id="courseId" />
     </div>
     <button class="open-btn" @click="openSideBar = !openSideBar"></button>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import CoursesSide from '@/components/CoursesSide.vue';
 import CourseSide from '@/components/CourseSide.vue';
 

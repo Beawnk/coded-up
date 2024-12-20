@@ -1,7 +1,7 @@
 <template>
-    <div class="courses-list">
+    <div class="courses-list" v-if="data.length > 0">
         <ul>
-            <li v-for="course in data.courses" :key="course.id" class="course">
+            <li v-for="course in data" :key="course.id" class="course">
                 <a href="" @click.prevent="openCourseSide(course.id)">{{ course.name }}</a>
             </li>
         </ul>
@@ -10,18 +10,23 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useFetchDataStore } from '@/stores/fetchData.js'
+import json from '@/api/api.json';
 
 const emit = defineEmits(['courseEmit']);
 
-const api = useFetchDataStore();
-const data = await api.fetchData('/courses');
+const data = ref([]);
+
+const fetchData = async () => {
+    data.value = await json.courses.courses;
+};
+
+onMounted(async () => {
+    await fetchData();
+});
 
 const openCourseSide = (id) => {
     emit('courseEmit', id);
-
 }
-
 </script>
 
 <style lang="scss" scoped>

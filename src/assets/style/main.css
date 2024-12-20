@@ -174,9 +174,9 @@ button {
 @media only screen and (max-width: 540px) {
     :root {
         /* font sizes */
-        --title-big: 28px;
-        --title-medium: 24px;
-        --title-small: 22px;
+        --title-big: 24px;
+        --title-medium: 22px;
+        --title-small: 20px;
 
         --subtitle-big: 20px;
         --subtitle-medium: 18px;

@@ -2,14 +2,14 @@
   <div v-if="course" class="course-side">
     <div class="title">
       <span>Curso</span>
-      <router-link :to="{ name: 'Course', params: { curso: courseId }}"><h5>{{ course.name }}</h5></router-link>
+      <router-link :to="{ name: 'Course', params: { curso: courseId }}" @click="handleSideBar"><h5>{{ course.name }}</h5></router-link>
     </div>
     <div class="classes">
       <div class="category" :class="{open: openCategories.includes(category.category)}" v-for="category in course.classes" :key="category.category">
         <p @click="toggleCategory(category.category)">{{ category.category }}</p>
         <ul v-show="openCategories.includes(category.category)">
           <li v-for="classe in category.classes" :key="classe.id">
-            <router-link :to="{ name: 'Class', params: { curso: courseId, aula: classe.id }}">{{ classe.name }}</router-link>
+            <router-link :to="{ name: 'Class', params: { curso: courseId, aula: classe.id }}" @click="handleSideBar">{{ classe.name }}</router-link>
           </li>
         </ul>
       </div>
@@ -21,6 +21,7 @@
 import { ref, onMounted, watch } from 'vue';
 import json from '@/api/api.json';
 
+const emit = defineEmits(['sideBarEmit']);
 
 const props = defineProps({
   courseId: {
@@ -49,6 +50,10 @@ const toggleCategory = (category) => {
   } else {
     openCategories.value.push(category);
   }
+};
+
+const handleSideBar = () => {
+  emit('sideBarEmit');
 };
 
 watch(() => props.courseId, async (newVal) => {

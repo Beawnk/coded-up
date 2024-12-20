@@ -4,7 +4,7 @@
       <router-link v-if="courseId == null" to="/cursos"><h5>Cursos</h5></router-link>
       <button v-if="courseId != null" @click="courseId = null" class="back-btn">Voltar para cursos</button>
       <CoursesSide v-if="courseId == null" @course-emit="(id) => courseId = id" />
-      <CourseSide v-else :course-id="courseId" />
+      <CourseSide v-else :course-id="courseId" @side-bar-emit="onSideBarEmit"/>
     </div>
     <button class="open-btn" @click="openSideBar = !openSideBar"></button>
   </div>
@@ -23,6 +23,16 @@ onMounted(() => {
     openSideBar.value = false;
   }
 });
+
+const onCourseEmit = (id) => {
+  courseId.value = id;
+}
+
+const onSideBarEmit = () => {
+  if (window.innerWidth <= 900) {
+    openSideBar.value = !openSideBar.value;
+  }
+}
 
 watch(openSideBar, () => {
   if (!openSideBar.value) {

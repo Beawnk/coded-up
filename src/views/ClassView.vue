@@ -48,6 +48,8 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/style/main.scss' as v;
+
 .class-view {
   .back-btn {
     margin-bottom: 20px;
@@ -56,6 +58,9 @@ onMounted(async () => {
     padding: 5px;
     border-radius: 5px;
     transition: var(--transition);
+    @include v.media(500px) { 
+      margin-left: 10px;
+    }
     &::before {
       content: '';
       width: 10px;
@@ -78,6 +83,10 @@ onMounted(async () => {
     padding-bottom: 60vh;
     border-radius: var(--border-radius);
     margin-bottom: 40px;
+    @include v.media(500px) {
+      padding-bottom: 30vh;
+      margin-bottom: 20px;
+    }
     iframe {
       width: 100%;
       height: 100%;

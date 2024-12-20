@@ -48,7 +48,7 @@ import SideBar from '@/components/SideBar.vue';
     padding-bottom: 80px;
     position: relative;
     transition: var(--transition);
-    @include v.media(500px) { 
+    @include v.media(540px) { 
       width: 100%;
       padding: 30px;
       padding-bottom: 60px;

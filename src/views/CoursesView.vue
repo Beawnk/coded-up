@@ -81,7 +81,7 @@ onMounted(async () => {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 40px;
-    @include v.media(500px) { 
+    @include v.media(540px) { 
       margin-top: 20px;
     }
     .course {
@@ -89,7 +89,7 @@ onMounted(async () => {
       border-radius: var(--border-radius);
       transition: var(--transition);
       position: relative;
-      @include v.media(500px) {
+      @include v.media(540px) {
         min-height: 230px;
       }
       &:hover {

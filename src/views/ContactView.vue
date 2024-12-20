@@ -51,7 +51,7 @@ onMounted(() => {
     }
 }
 
-@include v.media(500px) {
+@include v.media(540px) {
     :root {
         --img-width: 100%;
     }
@@ -78,7 +78,7 @@ onMounted(() => {
                 width: 100%;
                 margin-bottom: 20px;
             }
-            @include v.media(500px) {
+            @include v.media(540px) {
                 padding: 30px;
             }
             p {

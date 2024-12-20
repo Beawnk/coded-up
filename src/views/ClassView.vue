@@ -58,7 +58,7 @@ onMounted(async () => {
     padding: 5px;
     border-radius: 5px;
     transition: var(--transition);
-    @include v.media(500px) { 
+    @include v.media(540px) { 
       margin-left: 10px;
     }
     &::before {
@@ -86,7 +86,7 @@ onMounted(async () => {
     @include v.media(900px) {
       padding-bottom: 40vh;
     }
-    @include v.media(500px) {
+    @include v.media(540px) {
       padding-bottom: 30vh;
       margin-bottom: 20px;
     }

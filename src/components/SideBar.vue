@@ -19,7 +19,7 @@ const courseId = ref(null);
 const openSideBar = ref(true);
 
 onMounted(() => {
-  if (window.innerWidth <= 500) {
+  if (window.innerWidth <= 540) {
     openSideBar.value = false;
   }
 });
@@ -58,7 +58,7 @@ watch(openSideBar, () => {
       width: 300px;
     }
   }
-  @include v.media(500px) {
+  @include v.media(540px) {
     width: 40px;
     top: calc(var(--header-height) + 10px);
     height: 40px;
@@ -116,7 +116,7 @@ watch(openSideBar, () => {
       transform: rotate(180deg);
       top: 20px;
       right: 20px;
-      @include v.media(500px) {
+      @include v.media(540px) {
         top: 10px;
         right: 10px;
         background-size: 15px;

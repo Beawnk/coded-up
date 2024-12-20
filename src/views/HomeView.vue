@@ -69,6 +69,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/style/main.scss' as v;
+
 .home {
     .type-content {
         margin-bottom: 30px;
@@ -79,8 +81,17 @@ onMounted(() => {
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
+            @include v.media(900px) {
+                flex-direction: column;
+            }
             .img {
                 width: 700px;
+                @include v.media(900px) {
+                    width: 500px;
+                }
+                @include v.media(540px) {
+                    width: 100%;
+                }
                 img {
                     width: 100%;
                     height: auto;
@@ -88,6 +99,9 @@ onMounted(() => {
             }
             .inside-content {
                 margin-right: 80px;
+                @include v.media(900px) {
+                    margin-right: 0;
+                }
                 .text {
                     margin: 20px 0;
                     background-color: var(--white-color);
@@ -119,8 +133,17 @@ onMounted(() => {
             align-items: center;
             margin-top: 40px;
             margin-bottom: 40px;
+            @include v.media(900px) {
+                flex-direction: column;
+            }
             .img {
                 width: 700px;
+                @include v.media(900px) {
+                    width: 500px;
+                }
+                @include v.media(540px) {
+                    width: 100%;
+                }
                 img {
                     width: 100%;
                     height: auto;
@@ -128,6 +151,9 @@ onMounted(() => {
             }
             .inside-content {
                 margin-left: 80px;
+                @include v.media(900px) {
+                    margin-left: 0;
+                }
                 .text {
                     padding: 30px;
                     border-radius: var(--border-radius);
@@ -168,11 +194,13 @@ onMounted(() => {
             .grid {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(2, 1fr);
                 gap: 20px;
                 background-color: var(--white-color);
                 padding: 20px;
                 border-radius: var(--border-radius);
+                @include v.media(540px) {
+                    grid-template-columns: 1fr;
+                }
                 .review {
                     padding: 20px;
                     background-color: var(--primary-color);

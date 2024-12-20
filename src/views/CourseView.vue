@@ -139,7 +139,7 @@ watch(() => props.curso, async (newVal) => {
             width: calc(100% - 60px);
             margin-right: 0;
         }
-        @include v.media(500px) { 
+        @include v.media(540px) { 
             width: 100%;
         }
         h1 {
@@ -163,7 +163,7 @@ watch(() => props.curso, async (newVal) => {
         }
         h4 {
             margin-bottom: 20px;
-            @include v.media(500px) {
+            @include v.media(540px) {
                 margin-bottom: 10px;
             }
         }
@@ -174,7 +174,7 @@ watch(() => props.curso, async (newVal) => {
             @include v.media(768px) {
                 grid-template-columns: repeat(2, 1fr);
             }
-            @include v.media(500px) {
+            @include v.media(540px) {
                 grid-template-columns: 1fr;
                 gap: 10px;
             }

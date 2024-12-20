@@ -113,14 +113,14 @@ watch(classesListOpen, () => {
             }
             .open-btn {
                 transform: rotate(180deg);
-                @include v.media(500px) { 
+                @include v.media(540px) { 
                     top: 25px;
                     left: calc(100% - 40px);
                 }
             }
         }
     }
-    @include v.media(500px) { 
+    @include v.media(540px) { 
         width: 40px;
         height: 40px;
         border-radius: 10px 0 0 10px;
@@ -135,7 +135,7 @@ watch(classesListOpen, () => {
     h4 {
         margin-top: 40px;
         margin-bottom: 20px;
-        @include v.media(500px) { 
+        @include v.media(540px) { 
             margin-top: 0;
             margin-left: 30px;
             margin-bottom: 10px;
@@ -160,7 +160,7 @@ watch(classesListOpen, () => {
         @include v.media(1540px) {
             display: block;
         }
-        @include v.media(500px) { 
+        @include v.media(540px) { 
             top: 10px;
             left: 10px;
             background-size: 15px;

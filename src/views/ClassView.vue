@@ -83,6 +83,9 @@ onMounted(async () => {
     padding-bottom: 60vh;
     border-radius: var(--border-radius);
     margin-bottom: 40px;
+    @include v.media(900px) {
+      padding-bottom: 40vh;
+    }
     @include v.media(500px) {
       padding-bottom: 30vh;
       margin-bottom: 20px;

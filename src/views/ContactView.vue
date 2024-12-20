@@ -39,8 +39,22 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+@use '../assets/style/main.scss' as v;
+
 :root {
     --img-width: 500px;
+}
+
+@include v.media(900px) {
+    :root {
+        --img-width: 400px;
+    }
+}
+
+@include v.media(500px) {
+    :root {
+        --img-width: 100%;
+    }
 }
 
 .contact {
@@ -48,6 +62,10 @@ onMounted(() => {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        @include v.media(900px) {
+            flex-direction: column;
+            align-items: center;
+        }
         .info {
             margin-top: 40px;
             padding: 60px;
@@ -55,6 +73,14 @@ onMounted(() => {
             border-radius: var(--border-radius);
             margin-right: 50px;
             width: calc(100% - var(--img-width) - 50px);
+            @include v.media(900px) {
+                margin-right: 0;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            @include v.media(500px) {
+                padding: 30px;
+            }
             p {
                 margin-bottom: 20px;
                 &:last-child {

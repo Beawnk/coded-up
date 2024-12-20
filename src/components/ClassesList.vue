@@ -10,7 +10,7 @@
                             <h5>{{ category.category }} |<span>{{ category.classes.length }} aulas</span></h5>
                         </div>
                         <div v-show="openCategories.includes(category.category)" class="class" v-for="(classe, index) in category.classes" :key="classe.id" @click="emitActiveClass(classe.id)">
-                            <router-link :to="{ name: 'Class', params: { aula: classe.id }}" custom v-slot="{ navigate, isActive }">
+                            <router-link :to="{ name: 'Class', params: { aula: classe.id }}" custom v-slot="{ navigate, isActive }" @click="classesListOpen = !classesListOpen">
                                 <div @click="navigate" @keypress.enter="navigate" role="link" :class="{ 'active-class': isActive }">
                                     <div class="video">
                                         <img :src="getThumbnail(classe.id)" alt="Thumbnail">

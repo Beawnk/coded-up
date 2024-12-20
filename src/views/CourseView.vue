@@ -163,13 +163,20 @@ watch(() => props.curso, async (newVal) => {
         }
         h4 {
             margin-bottom: 20px;
+            @include v.media(500px) {
+                margin-bottom: 10px;
+            }
         }
         .details {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
+            @include v.media(768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
             @include v.media(500px) {
                 grid-template-columns: 1fr;
+                gap: 10px;
             }
             .detail {
                 background-color: var(--white-color);

@@ -27,7 +27,7 @@ onMounted(() => {
 watch(openSideBar, () => {
   if (!openSideBar.value) {
     document.documentElement.style.setProperty('--side-bar-width', '60px');
-  } else {
+  } else if (window.innerWidth > 900) {
     document.documentElement.style.setProperty('--side-bar-width', '300px');
   }
 });
@@ -50,10 +50,16 @@ watch(openSideBar, () => {
   display: flex;
   justify-content: space-between;
   transition: var(--transition);
+  @include v.media(900px) {
+    position: fixed;
+    z-index: 100;
+    top: var(--header-height);
+    &.open {
+      width: 300px;
+    }
+  }
   @include v.media(500px) {
     width: 40px;
-    z-index: 100;
-    position: fixed;
     top: calc(var(--header-height) + 10px);
     height: 40px;
     border-radius: 0 10px 10px 0;

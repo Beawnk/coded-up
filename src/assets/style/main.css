@@ -167,6 +167,20 @@ button {
 }
 
 @media only screen and (max-width: 500px) {
+    :root {
+        /* font sizes */
+        --title-big: 28px;
+        --title-medium: 24px;
+        --title-small: 22px;
+
+        --subtitle-big: 20px;
+        --subtitle-medium: 18px;
+        --subtitle-small: 16px;
+
+        --text-big: 16px;
+        --text-medium: 14px;
+        --text-small: 12px;
+    }
     body:has(.side-bar.open),
     body:has(.classes-list.open) {
         overflow: hidden;

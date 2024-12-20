@@ -97,15 +97,16 @@ watch(classesListOpen, () => {
     width: calc(30% - 40px);
     transition: var(--transition);
     @include v.media(1540px) {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        z-index: 99;
+        top: var(--header-height);
         right: 0;
         padding: 20px;
         width: var(--classes-list-width);
         background-color: var(--white-color);
         box-shadow: var(--shadow);
         border-radius: 20px 0 0 20px;
-        height: calc(100vh - var(--header-height));
+        height: 100vh;
         &.open {
             .class-list-wrapper {
                 display: block;

@@ -41,18 +41,17 @@ watch(openSideBar, () => {
   position: sticky;
   top: 0;
   left: 0;
-  height: calc(100vh - 80px);
+  height: 100vh;
   background-color: var(--black-color);
-  height: calc(100vh);
   color: var(--white-color);
   padding: 0;
   border-radius: 0 20px 20px 0;
   display: flex;
   justify-content: space-between;
   transition: var(--transition);
+  z-index: 100;
   @include v.media(900px) {
     position: fixed;
-    z-index: 100;
     top: var(--header-height);
     &.open {
       width: 300px;
@@ -66,7 +65,7 @@ watch(openSideBar, () => {
     &.open {
       width: 100%;
       border-radius: 0;
-      top: 0;
+      top: 0 !important;
       height: 100vh;
     }
   }

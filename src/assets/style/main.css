@@ -163,7 +163,6 @@ button {
     background-color: var(--gray-color);
     height: 100%;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 @media only screen and (max-width: 800px) {

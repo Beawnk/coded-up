@@ -2,7 +2,7 @@
   <Loader v-if="loading" />
   <AppearTransition v-else>
     <div class="courses">
-      <TypeTransition><h1 class="target-text agent-1">{{ data.title }}</h1></TypeTransition>
+      <TypeTransition><h1 class="target-text agent-1">Cursos</h1></TypeTransition>
       <div class="grid agent-2">
         <div class="course" v-for="data in data" :key="data.id">
           <router-link :to="{ name: 'Course', params: { curso: data.id }}" class="course-link">
@@ -26,6 +26,7 @@ import json from '@/api/api.json';
 
 const loading = ref(true);
 const data = ref(json.course);
+
 
 const totalClasses = (classes) => {
   return classes.length;

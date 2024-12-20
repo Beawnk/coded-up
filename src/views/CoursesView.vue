@@ -7,9 +7,9 @@
         <div class="course" v-for="data in data" :key="data.id">
           <router-link :to="{ name: 'Course', params: { curso: data.id }}" class="course-link">
             <span>{{ data.category }}</span>
-            <h4>{{ data.name }} | {{ data.hours }}h</h4>
+            <h4>{{ data.name }} | {{ totalDuration }}h</h4>
             <p>{{ data.description }}</p>
-            <h5>{{ totalClasses(data.classes) }} aulas</h5>
+            <h5>{{ totalClasses[data.id] }} aulas</h5>
           </router-link>
         </div>
       </div>
@@ -18,21 +18,56 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref } from 'vue';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
 import json from '@/api/api.json';
 
 const loading = ref(true);
-const data = ref(json.course);
+const data = ref(null);
+const totalDuration = ref(0);
+const totalClasses = ref({});
+const video = ref({});
 
+const fetchData = async () => {
+  const courses = json.course;
+  const classes = json.class;
 
-const totalClasses = (classes) => {
-  return classes.length;
+  courses.forEach(async course => {
+    const courseClasses = classes.filter(classe => classe.course === course.id);
+    totalClasses.value[course.id] = courseClasses.length;
+    console.log(totalClasses.value);
+    courseClasses.forEach(classe => {
+      video.value[classe.id] = classe.video;
+    });
+    await fetchVideoDurations(courseClasses);
+  });
+
+  data.value = courses;
 };
 
-onMounted(() => {
+const fetchVideoDurations = async (courseClasses) => {
+  const videoIds = courseClasses.map(classe => video.value[classe.id]).join(',');
+  const apiKey = 'AIzaSyAhRExcM6zUrfozCaJEzw7JFRsY01r5ZZs';
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoIds}&part=contentDetails&key=${apiKey}`);
+  const result = await response.json();
+  totalDuration.value = Math.ceil(result.items.reduce((sum, item) => {
+    const duration = parseISO8601Duration(item.contentDetails.duration);
+    return sum + duration;
+  }, 0));
+};
+
+const parseISO8601Duration = (duration) => {
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  const hours = parseInt(match[1] || 0);
+  const minutes = parseInt(match[2] || 0);
+  const seconds = parseInt(match[3] || 0);
+  return hours + (minutes / 60) + (seconds / 3600);
+};
+
+onMounted(async () => {
+  await fetchData();
   loading.value = false;
 });
 

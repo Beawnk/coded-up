@@ -4,12 +4,12 @@
     <div class="courses">
       <TypeTransition><h1 class="target-text agent-1">{{ data.title }}</h1></TypeTransition>
       <div class="grid agent-2">
-        <div class="course" v-for="data in data.courses" :key="data.id">
+        <div class="course" v-for="data in data" :key="data.id">
           <router-link :to="{ name: 'Course', params: { curso: data.id }}" class="course-link">
             <span>{{ data.category }}</span>
             <h4>{{ data.name }} | {{ data.hours }}h</h4>
             <p>{{ data.description }}</p>
-            <h5>{{ data.totalClasses }} aulas</h5>
+            <h5>{{ totalClasses(data.classes) }} aulas</h5>
           </router-link>
         </div>
       </div>
@@ -18,14 +18,18 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
 import json from '@/api/api.json';
 
 const loading = ref(true);
-const data = json.courses;
+const data = ref(json.course);
+
+const totalClasses = (classes) => {
+  return classes.length;
+};
 
 onMounted(() => {
   loading.value = false;

@@ -28,6 +28,8 @@ watch(openSideBar, () => {
 </script>
 
 <style lang="scss">
+@use '../assets/style/main.scss' as v;
+
 .side-bar {
   width: var(--side-bar-width);
   position: sticky;
@@ -42,6 +44,20 @@ watch(openSideBar, () => {
   display: flex;
   justify-content: space-between;
   transition: var(--transition);
+  @include v.media(500px) {
+    width: 40px;
+    z-index: 100;
+    position: fixed;
+    top: calc(var(--header-height) + 10px);
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    &.open {
+      width: 100%;
+      border-radius: 0;
+      top: 0;
+      height: 100vh;
+    }
+  }
   &.open {
     padding: 10px 20px;
     padding-top: 20px;
@@ -51,6 +67,8 @@ watch(openSideBar, () => {
     }
     .open-btn {
       &::after {
+        top: 20px;
+        right: 20px;
         transform: rotate(0);
       }
     }
@@ -86,6 +104,12 @@ watch(openSideBar, () => {
       transform: rotate(180deg);
       top: 20px;
       right: 20px;
+      @include v.media(500px) {
+        top: 10px;
+        right: 10px;
+        background-size: 15px;
+        background-position: center;
+      }
     }
     &:hover {
       &::after {

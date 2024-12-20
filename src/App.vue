@@ -16,6 +16,8 @@ import SideBar from '@/components/SideBar.vue';
 </script>
 
 <style lang="scss">
+@use 'assets/style/main.scss' as v;
+
 .btn {
   padding: 10px 20px;
   border-radius: 5px;
@@ -42,6 +44,11 @@ import SideBar from '@/components/SideBar.vue';
     padding-bottom: 80px;
     position: relative;
     transition: var(--transition);
+    @include v.media(500px) { 
+      width: 100%;
+      padding: 30px;
+      padding-bottom: 60px;
+    }
     p {
       font-size: var(--text-big);
       color: var(--light-dark-color);

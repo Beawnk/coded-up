@@ -37,7 +37,6 @@ const fetchData = async () => {
   courses.forEach(async course => {
     const courseClasses = classes.filter(classe => classe.course === course.id);
     totalClasses.value[course.id] = courseClasses.length;
-    console.log(totalClasses.value);
     courseClasses.forEach(classe => {
       video.value[classe.id] = classe.video;
     });
@@ -74,17 +73,25 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/style/main.scss' as v;
+
 .courses {
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 40px;
+    @include v.media(500px) { 
+      margin-top: 20px;
+    }
     .course {
       background-color: var(--white-color);
       border-radius: var(--border-radius);
       transition: var(--transition);
       position: relative;
+      @include v.media(500px) {
+        min-height: 230px;
+      }
       &:hover {
         background-color: var(--dark-color);
       }

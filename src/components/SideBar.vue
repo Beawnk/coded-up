@@ -11,12 +11,18 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import CoursesSide from '@/components/CoursesSide.vue';
 import CourseSide from '@/components/CourseSide.vue';
 
 const courseId = ref(null);
 const openSideBar = ref(true);
+
+onMounted(() => {
+  if (window.innerWidth <= 500) {
+    openSideBar.value = false;
+  }
+});
 
 watch(openSideBar, () => {
   if (!openSideBar.value) {

@@ -167,7 +167,8 @@ button {
 }
 
 @media only screen and (max-width: 500px) {
-    body:has(.side-bar.open) {
+    body:has(.side-bar.open),
+    body:has(.classes-list.open) {
         overflow: hidden;
     }
 }

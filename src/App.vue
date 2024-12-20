@@ -36,6 +36,7 @@ import SideBar from '@/components/SideBar.vue';
   display: flex;
   justify-content: space-between;
   position: relative;
+  min-height: 100vh;
   .main-content {
     width: calc(100% - var(--side-bar-width));
     background-color: var(--gray-color);

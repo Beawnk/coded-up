@@ -113,12 +113,33 @@ watch(classesListOpen, () => {
             }
             .open-btn {
                 transform: rotate(180deg);
+                @include v.media(500px) { 
+                    top: 25px;
+                    left: calc(100% - 40px);
+                }
             }
+        }
+    }
+    @include v.media(500px) { 
+        width: 40px;
+        height: 40px;
+        border-radius: 10px 0 0 10px;
+        top: 10px;
+        &.open {
+            width: 100%;
+            height: 100vh;
+            border-radius: 0;
+            top: 0;
         }
     } 
     h4 {
         margin-top: 40px;
         margin-bottom: 20px;
+        @include v.media(500px) { 
+            margin-top: 0;
+            margin-left: 30px;
+            margin-bottom: 10px;
+        }
     }
     .open-btn {
         display: none;
@@ -138,6 +159,11 @@ watch(classesListOpen, () => {
         }
         @include v.media(1540px) {
             display: block;
+        }
+        @include v.media(500px) { 
+            top: 10px;
+            left: 10px;
+            background-size: 15px;
         }
     }
     .class-list-wrapper {
@@ -220,7 +246,7 @@ watch(classesListOpen, () => {
             .class {
                 cursor: pointer;
                 background-color: var(--white-color);
-                padding: 20px;
+                padding: 10px;
                 border-radius: var(--border-radius);
                 margin-bottom: 10px;
                 transform: translateX(-10px);

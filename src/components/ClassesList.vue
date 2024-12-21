@@ -28,7 +28,7 @@
 
 <script setup>
 import { onMounted, ref, watch } from 'vue';
-import json from '@/api/api.json';
+import { supabase } from '@/lib/supabaseClient';
 
 const props = defineProps({
     curso: String
@@ -41,9 +41,24 @@ const videoThumb = ref({});
 const classesListOpen = ref(false);
 
 const fetchData = async (curso) => {
-    data.value = json.course.find(course => course.id === curso);
-    const classes = json.class;
-    const courseClasses = classes.filter(classe => classe.course === curso);
+    const { data: courseData, error } = await supabase.from('course').select('*')
+    if (error) {
+      console.error('Error fetching course:', error);
+      data.value = null;
+    } else if (courseData && courseData) {
+      data.value = courseData.find((c) => c.id === curso);
+      if (!data.value) {
+        console.error('Course not found for ID:', curso);
+      }
+    }
+
+    const { data: classesData, classesError } = await supabase.from('class').select('*');
+    if (classesError) {
+        console.error('Error fetching classes:', classesError);
+    }
+
+    const courseClasses = classesData.filter(classe => classe.course === curso);
+
     courseClasses.forEach(classe => {
       videoThumb.value[classe.id] = classe.video;
     });

@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import json from '@/api/api.json';
+import { supabase } from '@/lib/supabaseClient'
 
 const emit = defineEmits(['sideBarEmit']);
 
@@ -33,8 +33,20 @@ const props = defineProps({
 const course = ref(null);
 const openCategories = ref([]);
 
-const fetchData = async (curso) => {
-  course.value = await json.course.find(course => course.id === curso);
+const fetchData = async (courseId) => {
+  const { data: courseData, error } = await supabase
+    .from('course')
+    .select('*')
+
+  if (error) {
+    console.error('Error fetching course:', error);
+    course.value = null;
+  } else if (courseData && courseData) {
+    course.value = courseData.find((c) => c.id === courseId);
+    if (!course.value) {
+      console.error('Course not found for ID:', courseId);
+    }
+  }
 };
 
 onMounted(async () => {

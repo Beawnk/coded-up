@@ -22,7 +22,7 @@ import { onMounted, ref } from 'vue';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
-import json from '@/api/api.json';
+import { supabase } from '@/lib/supabaseClient'
 
 const loading = ref(true);
 const data = ref(null);
@@ -31,11 +31,20 @@ const totalClasses = ref({});
 const video = ref({});
 
 const fetchData = async () => {
-  const courses = json.course;
-  const classes = json.class;
+  const { data: coursesData, error } = await supabase.from('course').select('*');
+  if (error) {
+    console.error('Error fetching courses:', error);
+  } else {
+    data.value = coursesData;
+  }
+  
+  const { data: classesData, error: classesError } = await supabase.from('class').select('*');
+  if (classesError) {
+    console.error('Error fetching classes:', classesError);
+  }
 
-  courses.forEach(async course => {
-    const courseClasses = classes.filter(classe => classe.course === course.id);
+  coursesData.forEach(async course => {
+    const courseClasses = classesData.filter(classe => classe.course === course.id);
     totalClasses.value[course.id] = courseClasses.length;
     courseClasses.forEach(classe => {
       video.value[classe.id] = classe.video;
@@ -43,7 +52,7 @@ const fetchData = async () => {
     await fetchVideoDurations(courseClasses);
   });
 
-  data.value = courses;
+  data.value = coursesData;
 };
 
 const fetchVideoDurations = async (courseClasses) => {

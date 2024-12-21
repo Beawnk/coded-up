@@ -1,7 +1,7 @@
 <template>
     <Loader v-if="loading" />
     <AppearTransition v-else>
-        <div class="home">
+        <div class="home" v-if="data">
             <TypeTransition>
                 <h1 class="target-text agent-1">Bem-vindo a {{ data.title }}, sua Jornada para o Design e Desenvolvimento Full-stack.</h1>
             </TypeTransition>
@@ -56,13 +56,22 @@ import { onMounted, ref } from 'vue';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
-import json from '@/api/api.json';
+import { supabase } from '@/lib/supabaseClient';
 
 const data = ref(null);
 const loading = ref(true);
 
-onMounted(() => {
-    data.value = json.home;
+const fetchData = async () => {
+  const { data: homeData, error } = await supabase.from('home').select('*').single();
+  if (error) {
+    console.error('Error fetching home:', error);
+  } else {
+    data.value = homeData;
+  }
+};
+
+onMounted(async () => {
+    await fetchData();
     loading.value = false;
 });
 

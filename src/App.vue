@@ -21,19 +21,35 @@ onMounted(() => {
     const classList = document.querySelector('.classes-list');
     if (window.scrollY >= 60) {
       if (window.innerWidth > 540) {
-        sideBar.style.top = '0';
-        classList.style.top = '0';
+        if (sideBar){
+          sideBar.style.top = '0';
+        }
+        if (classList) {
+          classList.style.top = '0';
+        }
       } else {
-        sideBar.style.top = '10px';
-        classList.style.top = '10px';
+        if (sideBar){
+          sideBar.style.top = '10px';
+        }
+        if (classList) {
+          classList.style.top = '10px';
+        }
       }
     } else {
       if (window.innerWidth > 540) {
-        sideBar.style.top = 'var(--header-height)';
-        classList.style.top = 'var(--header-height)';
+        if (sideBar){
+          sideBar.style.top = 'var(--header-height)';
+        }
+        if (classList) {
+          classList.style.top = 'var(--header-height)';
+        }
       } else {
-        sideBar.style.top = 'calc(var(--header-height) + 10px)';
-        classList.style.top = 'calc(var(--header-height) + 10px)';
+        if (sideBar){
+          sideBar.style.top = 'calc(var(--header-height) + 10px)';
+        }
+        if (classList) {
+          classList.style.top = 'calc(var(--header-height) + 10px)';
+        }
       }
     }
   });

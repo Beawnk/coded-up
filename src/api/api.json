@@ -2,7 +2,7 @@
   "home": {
     "id": "home",
     "title": "CodedUp",
-    "description": "Cursos online de UX/UI Design e Front End.",
+    "description": "Você está prestes a embarcar em uma experiência de aprendizado que transformará sua visão sobre design e desenvolvimento. Na {{ data.title }}, oferecemos cursos online de alta qualidade focados em desenvolvimento full-stack e Design UX/UI, projetados para todos os níveis de habilidade, desde iniciantes até profissionais em busca de atualização.",
     "reviews": [
       {
         "name": "Mariana",

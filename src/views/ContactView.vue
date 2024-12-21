@@ -1,14 +1,14 @@
 <template>
     <Loader v-if="loading" />
     <AppearTransition v-else>
-        <div class="contact">
-            <TypeTransition><h1 class="target-text agent-1">{{ contact.title }}</h1></TypeTransition>
-            <p class="agent-2">{{ contact.description }}</p>
+        <div class="contact" v-if="data">
+            <TypeTransition><h1 class="target-text agent-1">{{ data.title }}</h1></TypeTransition>
+            <p class="agent-2">{{ data.description }}</p>
             <div class="contact-info agent-3">
                 <div class="info">
-                    <p><strong>Email: </strong>{{ contact.contact.email }}</p>
-                    <p><strong>Telefone: </strong>{{ contact.contact.phone }}</p>
-                    <p><strong>Endereço: </strong>{{ contact.contact.address }}</p>
+                    <p><strong>Email: </strong>{{ data.contact.email }}</p>
+                    <p><strong>Telefone: </strong>{{ data.contact.phone }}</p>
+                    <p><strong>Endereço: </strong>{{ data.contact.address }}</p>
                 </div>
                 <div class="img">
                     <img src="../assets/img/contact.png" alt="contact" />
@@ -20,17 +20,23 @@
 
 <script setup>
 import { ref, onMounted} from 'vue';
-import json from '@/api/api.json';
+import { supabase } from '@/lib/supabaseClient';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
 
-const contact = ref(null);
-const loading = ref(true);
+const loading = ref(false);
+const data = ref(null);
 
 const fetchData = async () => {
-    contact.value = json.contact;
-    loading.value = false;
+    loading.value = true;
+    const { data: contactData, error } = await supabase.from('contact').select('*').single();
+    if (error) {
+        console.error('Error fetching contact:', error);
+    } else {
+        data.value = contactData;
+        loading.value = false;
+    }
 };
 
 onMounted(() => {

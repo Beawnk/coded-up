@@ -1,0 +1,11 @@
+
+{
+    "id": "contato",
+    "title": "Contato",
+    "description": "Entre em contato que responderemos em até 24h.",
+    "contact": {
+      "email": "contato@gmail.com",
+      "phone": "21 9999-9999",
+      "address": "Rua Ali Perto, Botafogo - RJ"
+    }
+}

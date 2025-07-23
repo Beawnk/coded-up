@@ -1,0 +1,23 @@
+{
+    "id": "home",
+    "title": "CodedUp",
+    "description": "Você está prestes a embarcar em uma experiência de aprendizado que transformará sua visão sobre design e desenvolvimento.\nNa {{ data.title }}, oferecemos cursos online de alta qualidade focados em desenvolvimento full-stack e Design UX/UI, projetados para todos os níveis de habilidade, desde iniciantes até profissionais em busca de atualização.",
+    "reviews": [
+      {
+        "name": "Mariana",
+        "description": "Eu gostei muito do curso, com ele eu consegui fazer o meu primeiro site."
+      },
+      {
+        "name": "Matheus",
+        "description": "Consegui meu primeiro emprego logo após terminar esse curso."
+      },
+      {
+        "name": "Pedro",
+        "description": "Gostei muito do curso, mas poderia maneirar um pouco no sotaque."
+      },
+      {
+        "name": "Maria",
+        "description": "Curso muito bom, quando vai sair o de Vue.js?"
+      }
+    ]
+}

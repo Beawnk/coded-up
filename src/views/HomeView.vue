@@ -56,22 +56,12 @@ import { onMounted, ref } from 'vue';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
-import { supabase } from '@/lib/supabaseClient';
+import HomeData from '@/api/home.json';
 
-const data = ref(null);
+const data = ref(HomeData);
 const loading = ref(true);
 
-const fetchData = async () => {
-  const { data: homeData, error } = await supabase.from('home').select('*').single();
-  if (error) {
-    console.error('Error fetching home:', error);
-  } else {
-    data.value = homeData;
-  }
-};
-
 onMounted(async () => {
-    await fetchData();
     loading.value = false;
 });
 

@@ -1,0 +1,233 @@
+[
+  {
+    "id": "funcoes",
+    "name": "Funções e Métodos",
+    "content": "Nessa aula você irá aprender como declarar funções e métodos em JavaScript.",
+    "video": "mc3TKp2XzhI",
+    "course": "javascript"
+  },
+  {
+    "id": "forms",
+    "name": "Formulários em HTML",
+    "content": "Nessa aula você irá aprender como criar formulários em HTML e como estiliza-los com CSS.",
+    "video": "Wa1Ji2t2gmc",
+    "course": "html-e-css"
+  },
+  {
+    "id": "animações",
+    "name": "Animações no Figma",
+    "content": "Nessa aula você irá aprender como criar animações no Figma.",
+    "video": "PghmSIgpDnM",
+    "course": "figma"
+  },
+  {
+    "id": "interacoes",
+    "name": "Criação de Interações",
+    "content": "Nessa aula você irá aprender como criar interações no Figma.",
+    "video": "MKDpqjxe1Rw",
+    "course": "figma"
+  },
+  {
+    "id": "cores",
+    "name": "Escolha de Cores",
+    "content": "Nessa aula você irá aprender como escolher cores para o seu projeto no Figma.",
+    "video": "NPq8sOaqsrY",
+    "course": "figma"
+  },
+  {
+    "id": "feedback",
+    "name": "Feedback Visual",
+    "content": "Nessa aula você irá aprender como criar feedback visual no Figma.",
+    "video": "wFWbE8OmlNQ",
+    "course": "figma"
+  },
+  {
+    "id": "layouts",
+    "name": "Layouts e Grids",
+    "content": "Nessa aula você irá aprender como criar layouts e grids no Figma.",
+    "video": "gHdcAH1nhiU",
+    "course": "figma"
+  },
+  {
+    "id": "tipografia",
+    "name": "Tipografia no Figma",
+    "content": "Nessa aula você irá aprender como trabalhar com tipografia no Figma.",
+    "video": "6NT0kAI0ayg",
+    "course": "figma"
+  },
+  {
+    "id": "css",
+    "name": "CSS e Propriedades",
+    "content": "Nessa aula você irá aprender como estilizar as tags de HTML utilizando CSS.",
+    "video": "LWU2OR19ZG4",
+    "course": "html-e-css"
+  },
+  {
+    "id": "flexbox",
+    "name": "CSS Flexbox",
+    "content": "Nessa aula você irá aprender como utilizar o Flexbox para criar layouts responsivos.",
+    "video": "KbjLtEgmZ_E",
+    "course": "html-e-css"
+  },
+  {
+    "id": "grid",
+    "name": "CSS Grid",
+    "content": "Nessa aula você irá aprender como utilizar o Grid para criar layouts complexos.",
+    "video": "IpGFoNYJJU8",
+    "course": "html-e-css"
+  },
+  {
+    "id": "html",
+    "name": "HTML e Tags",
+    "content": "Nessa aula você irá aprender como estruturar o conteúdo de uma página utilizando tags de HTML.",
+    "video": "-FQP7hD-J6A",
+    "course": "html-e-css"
+  },
+  {
+    "id": "loops",
+    "name": "Laços de Repetição",
+    "content": "Nessa aula você irá aprender como utilizar laços de repetição em JavaScript.",
+    "video": "5rZqYPKIwkY",
+    "course": "javascript"
+  },
+  {
+    "id": "objetos",
+    "name": "Objetos e Arrays",
+    "content": "Nessa aula você irá aprender como trabalhar com objetos e arrays em JavaScript.",
+    "video": "yS7AcF-xRUg",
+    "course": "javascript"
+  },
+  {
+    "id": "promises",
+    "name": "Promises e Async/Await",
+    "content": "Nessa aula você irá aprender como trabalhar com Promises e Async/Await em JavaScript.",
+    "video": "q28lfkBd9F4",
+    "course": "javascript"
+  },
+  {
+    "id": "variaveis",
+    "name": "Variáveis e Constantes",
+    "content": "Nessa aula você irá aprender como declarar variáveis e constantes em JavaScript.",
+    "video": "FmTO2EPatZQ",
+    "course": "javascript"
+  },
+  {
+    "id": "controle-fluxo",
+    "name": "Controle de Fluxo",
+    "content": "Nessa aula você irá aprender como trabalhar com controle de fluxo em Python.",
+    "video": "nJkVHusJp6E",
+    "course": "python"
+  },
+  {
+    "id": "funcoes-python",
+    "name": "Funções em Python",
+    "content": "Nessa aula você irá aprender como declarar funções em Python.",
+    "video": "ezfr9d7wd_k",
+    "course": "python"
+  },
+  {
+    "id": "oop",
+    "name": "Programação Orientada a Objetos",
+    "content": "Nessa aula você irá aprender como trabalhar com Programação Orientada a Objetos em Python.",
+    "video": "97A_Cyyh-eU",
+    "course": "python"
+  },
+  {
+    "id": "modulos",
+    "name": "Trabalhando com Módulos",
+    "content": "Nessa aula você irá aprender como trabalhar com módulos em Python.",
+    "video": "s3r8_Aug4y8",
+    "course": "python"
+  },
+  {
+    "id": "erros",
+    "name": "Tratamento de Erros",
+    "content": "Nessa aula você irá aprender como tratar erros em Python.",
+    "video": "xz2B3bfNjEk",
+    "course": "python"
+  },
+  {
+    "id": "variaveis-python",
+    "name": "Variáveis e Tipos",
+    "content": "Nessa aula você irá aprender como declarar variáveis e tipos em Python.",
+    "video": "p1jB2xQuXFU",
+    "course": "python"
+  },
+  {
+    "id": "context",
+    "name": "API de Contexto",
+    "content": "Nessa aula você irá aprender como utilizar a API de contexto em React.js.",
+    "video": "VMy9Sb0eDHo",
+    "course": "reactjs"
+  },
+  {
+    "id": "estado",
+    "name": "Gerenciamento de Estado",
+    "content": "Nessa aula você irá aprender como gerenciar o estado de componentes em React.js.",
+    "video": "unfHrB2sGGM",
+    "course": "reactjs"
+  },
+  {
+    "id": "hooks",
+    "name": "Hooks Avançados",
+    "content": "Nessa aula você irá aprender como utilizar hooks avançados em React.js.",
+    "video": "MA3Ngo32qiI",
+    "course": "reactjs"
+  },
+  {
+    "id": "jsx",
+    "name": "JSX e Componentes",
+    "content": "Nessa aula você irá aprender como criar componentes com JSX em React.js.",
+    "video": "9iKNxnFJY_Q",
+    "course": "reactjs"
+  },
+  {
+    "id": "routing",
+    "name": "React Router",
+    "content": "Nessa aula você irá aprender como utilizar o React Router para navegação em React.js.",
+    "video": "7b42lVMdEjE",
+    "course": "reactjs"
+  },
+  {
+    "id": "props",
+    "name": "Trabalhando com Props",
+    "content": "Nessa aula você irá aprender como trabalhar com props em React.js.",
+    "video": "ZLtBdpwg8tI",
+    "course": "reactjs"
+  },
+  {
+    "id": "user-journey",
+    "name": "Jornada do Usuário",
+    "content": "Nessa aula você irá aprender como criar a jornada do usuário para o seu projeto de UX Design.",
+    "video": "HdktfUSqVzc",
+    "course": "ux-design"
+  },
+  {
+    "id": "personas",
+    "name": "Personas",
+    "content": "Nessa aula você irá aprender como criar personas para o seu projeto de UX Design.",
+    "video": "q_NrzJBS7QI",
+    "course": "ux-design"
+  },
+  {
+    "id": "pesquisa",
+    "name": "Pesquisa",
+    "content": "Nessa aula você irá aprender como realizar pesquisas de UX Design.",
+    "video": "y8U0BTrp5rg",
+    "course": "ux-design"
+  },
+  {
+    "id": "prototipo",
+    "name": "Protótipo",
+    "content": "Nessa aula você irá aprender como criar protótipos de interfaces de usuário.",
+    "video": "g5nTmyu-Unw",
+    "course": "ux-design"
+  },
+  {
+    "id": "wireframes",
+    "name": "Wireframes",
+    "content": "Nessa aula você irá aprender como criar wireframes para o seu projeto de UX Design.",
+    "video": "qkQ0nva0_Pw",
+    "course": "ux-design"
+  }
+]

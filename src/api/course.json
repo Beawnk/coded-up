@@ -1,0 +1,254 @@
+[
+  {
+    "id": "html-e-css",
+    "name": "HTML e CSS",
+    "category": "Front End",
+    "skillLevel": "Iniciante",
+    "img": "html-e-css.webp",
+    "description": "Nesse curso você irá aprender como utilizar tags de HTML para estruturar o conteúdo da sua página.\nE também como estiliza-las com CSS.",
+    "classes": [
+      {
+        "classes": [
+          {
+            "id": "html",
+            "name": "HTML e Tags"
+          },
+          {
+            "id": "forms",
+            "name": "Formulários em HTML"
+          }
+        ],
+        "category": "HTML"
+      },
+      {
+        "classes": [
+          {
+            "id": "css",
+            "name": "CSS e Propriedades"
+          },
+          {
+            "id": "flexbox",
+            "name": "CSS Flexbox"
+          },
+          {
+            "id": "grid",
+            "name": "CSS Grid"
+          }
+        ],
+        "category": "CSS"
+      }
+    ]
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "Front End",
+    "skillLevel": "Intermediário",
+    "img": "javascript.jpg",
+    "description": "Esse é um curso completo de JavaScript, você irá prender tudo sobre variáveis, objetos, arrays e funções.",
+    "classes": [
+      {
+        "classes": [
+          {
+            "id": "variaveis",
+            "name": "Variáveis e Constantes"
+          },
+          {
+            "id": "funcoes",
+            "name": "Funções e Métodos"
+          },
+          {
+            "id": "loops",
+            "name": "Laços de Repetição"
+          }
+        ],
+        "category": "Fundamentals"
+      },
+      {
+        "classes": [
+          {
+            "id": "objetos",
+            "name": "Objetos e Arrays"
+          },
+          {
+            "id": "promises",
+            "name": "Promises e Async/Await"
+          }
+        ],
+        "category": "Advanced"
+      }
+    ]
+  },
+  {
+    "id": "ux-design",
+    "name": "UX Design",
+    "category": "UX/UI",
+    "skillLevel": "Intermediário",
+    "img": "ux-design.webp",
+    "description": "Aprenda todos os fundamentos de UX Design nesse curso.\nAprenda como pesquisar, analisar e desenvolver um projeto com foco na experiência do usuário.",
+    "classes": [
+      {
+        "classes": [
+          {
+            "id": "pesquisa",
+            "name": "Pesquisa"
+          },
+          {
+            "id": "personas",
+            "name": "Personas"
+          },
+          {
+            "id": "user-journey",
+            "name": "Jornada do Usuário"
+          }
+        ],
+        "category": "Research"
+      },
+      {
+        "classes": [
+          {
+            "id": "prototipo",
+            "name": "Protótipo"
+          },
+          {
+            "id": "wireframes",
+            "name": "Wireframes"
+          }
+        ],
+        "category": "Prototyping"
+      }
+    ]
+  },
+  {
+    "id": "reactjs",
+    "name": "React.js",
+    "category": "Front End",
+    "skillLevel": "Avançado",
+    "img": "reactjs.webp",
+    "description": "Aprenda a criar aplicações web modernas com React.js, utilizando hooks, estados, e componentes funcionais.",
+    "classes": [
+      {
+        "classes": [
+          {
+            "id": "jsx",
+            "name": "JSX e Componentes"
+          },
+          {
+            "id": "estado",
+            "name": "Gerenciamento de Estado"
+          },
+          {
+            "id": "props",
+            "name": "Trabalhando com Props"
+          }
+        ],
+        "category": "Basics"
+      },
+      {
+        "classes": [
+          {
+            "id": "hooks",
+            "name": "Hooks Avançados"
+          },
+          {
+            "id": "context",
+            "name": "API de Contexto"
+          },
+          {
+            "id": "routing",
+            "name": "React Router"
+          }
+        ],
+        "category": "Advanced"
+      }
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "Back End",
+    "skillLevel": "Iniciante",
+    "img": "python.webp",
+    "description": "Esse curso ensina as bases de Python, uma linguagem versátil para desenvolvimento, análise de dados e automação.",
+    "classes": [
+      {
+        "classes": [
+          {
+            "id": "variaveis-python",
+            "name": "Variáveis e Tipos"
+          },
+          {
+            "id": "controle-fluxo",
+            "name": "Controle de Fluxo"
+          },
+          {
+            "id": "funcoes-python",
+            "name": "Funções em Python"
+          }
+        ],
+        "category": "Basics"
+      },
+      {
+        "classes": [
+          {
+            "id": "oop",
+            "name": "Programação Orientada a Objetos"
+          },
+          {
+            "id": "modulos",
+            "name": "Trabalhando com Módulos"
+          },
+          {
+            "id": "erros",
+            "name": "Tratamento de Erros"
+          }
+        ],
+        "category": "Advanced"
+      }
+    ]
+  },
+  {
+    "id": "figma",
+    "name": "Figma completo",
+    "category": "UX/UI",
+    "skillLevel": "Iniciante",
+    "img": "figma.jpg",
+    "description": "Crie protótipos e interfaces de usuário profissionais com Figma, explorando seu poder colaborativo.",
+    "classes": [
+      {
+        "classes": [
+          {
+            "id": "layouts",
+            "name": "Layouts e Grids"
+          },
+          {
+            "id": "tipografia",
+            "name": "Tipografia no Figma"
+          },
+          {
+            "id": "cores",
+            "name": "Escolha de Cores"
+          }
+        ],
+        "category": "Design Basics"
+      },
+      {
+        "classes": [
+          {
+            "id": "interacoes",
+            "name": "Criação de Interações"
+          },
+          {
+            "id": "animações",
+            "name": "Animações no Figma"
+          },
+          {
+            "id": "feedback",
+            "name": "Feedback Visual"
+          }
+        ],
+        "category": "Prototyping"
+      }
+    ]
+  }
+]

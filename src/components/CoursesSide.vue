@@ -9,25 +9,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { supabase } from '@/lib/supabaseClient'
+import { ref } from 'vue';
+import coursesData from '@/api/courses.json';
 
 const emit = defineEmits(['courseEmit']);
 
-const data = ref(null);
-
-const fetchData = async () => {
-  const { data: coursesData, error } = await supabase.from('courses').select('*').single();
-  if (error) {
-    console.error('Error fetching courses:', error);
-  } else {
-    data.value = coursesData;
-  }
-};
-
-onMounted(async () => {
-    await fetchData();
-});
+const data = ref(coursesData);
 
 const openCourseSide = (id) => {
     emit('courseEmit', id);

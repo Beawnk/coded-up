@@ -19,29 +19,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted} from 'vue';
-import { supabase } from '@/lib/supabaseClient';
+import { ref } from 'vue';
 import Loader from '@/components/Loader.vue'
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
+import ContactData from '@/api/contact.json';
 
 const loading = ref(false);
-const data = ref(null);
+const data = ref(ContactData);
 
-const fetchData = async () => {
-    loading.value = true;
-    const { data: contactData, error } = await supabase.from('contact').select('*').single();
-    if (error) {
-        console.error('Error fetching contact:', error);
-    } else {
-        data.value = contactData;
-        loading.value = false;
-    }
-};
-
-onMounted(() => {
-    fetchData();
-});
 </script>
 
 <style lang="scss">

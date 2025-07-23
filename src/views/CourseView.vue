@@ -44,7 +44,8 @@ import ClassesList from '@/components/ClassesList.vue';
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
 import AppearTransition from '@/components/transitions/AppearTransition.vue';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
-import { supabase } from '@/lib/supabaseClient';
+import courseData from '@/api/course.json';
+import classesData from '@/api/class.json';
 
 const props = defineProps({
     curso: String
@@ -59,21 +60,6 @@ const route = useRoute();
 
 
 const fetchData = async (curso) => {
-    const { data: courseData, error } = await supabase.from('course').select('*')
-    if (error) {
-      console.error('Error fetching course:', error);
-      course.value = null;
-    } else if (courseData && courseData) {
-      data.value = courseData.find((c) => c.id === curso);
-      if (!data.value) {
-        console.error('Course not found for ID:', curso);
-      }
-    }
-
-    const { data: classesData, classesError } = await supabase.from('class').select('*');
-    if (classesError) {
-        console.error('Error fetching classes:', classesError);
-    }
 
     data.value = courseData.find(course => course.id === curso);
     const courseClasses = classesData.filter(classe => classe.course === curso);

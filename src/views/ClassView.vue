@@ -13,7 +13,7 @@
 import { onMounted, ref } from 'vue';
 import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
 import TypeTransition from '@/components/transitions/TypeTransition.vue';
-import { supabase } from '@/lib/supabaseClient';
+import classData from '@/api/class.json';
 
 const props = defineProps({
   aula: String,
@@ -27,10 +27,6 @@ const data = ref(null);
 const router = useRouter();
 
 const fetchData = async (aula) => {
-  const { data: classData, error } = await supabase.from('class').select('*')
-  if (error) {
-    console.error('Error fetching class:', error);
-  }
   data.value = classData.find(classe => classe.id === aula);
   emit('setActiveClass', aula);
 };
